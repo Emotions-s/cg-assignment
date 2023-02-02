@@ -28,9 +28,9 @@ public class Assignment_1_64050152_64050177 extends JPanel {
         drawBackGround(g);
     }
 
-    // **************
-    // *   Layers   *
-    // **************
+    // **********
+    // * Layers *
+    // **********
 
     // Draw background layer
     public void drawBackGround(Graphics g) {
@@ -56,20 +56,30 @@ public class Assignment_1_64050152_64050177 extends JPanel {
         layers.add(backGround);
 
         // tracery
-        layers.add(drawPolygon(new Point[]{new Point(460,150), new Point(539,210), new Point(599,150)}, new Color(72,80,93,255)));
+        layers.add(drawPolygon(new Point[] { new Point(460, 150), new Point(539, 210), new Point(600, 150) },
+                new Color(72, 80, 93, 255)));
 
-        // BufferedImage t1 = drawPolygon(new Point[]{new Point(460,150), new Point(539,210), new Point(509,174)}, new Color(72,80,93,255));
-        // layers.add(t1);
+        layers.add(drawPolygonFill(new Point[] { new Point(460, 150), new Point(539, 210), new Point(509, 174) },
+                new Color(72, 80, 93, 255), new Color(72, 80, 93, 255)));
+
+        layers.add(drawPolygon(new Point[] { new Point(600, 150), new Point(539, 210), new Point(600, 235) },
+                new Color(72, 80, 93, 255)));
+
+        layers.add(drawPolygonFill(
+                new Point[] { new Point(538, 211), new Point(516, 287), new Point(508, 290), new Point(460, 150) },
+                new Color(41,33,57,255), new Color(41,33,57,255)));
+
+        layers.add(drawPolygonFill(new Point[] { new Point(519, 286), new Point(539, 210), new Point(600, 235) },
+                new Color(42, 45, 64, 255), new Color(62, 48, 61, 255)));
 
         // Draw to Graphics
         drawLayerToImages(g, layers);
 
     }
 
-
-    // **************
-    // *    Tools   *
-    // **************
+    // *********
+    // * Tools *
+    // *********
 
     // Draw all BufferedImage to Graphics
     public void drawLayerToImages(Graphics g, ArrayList<BufferedImage> layers) {
@@ -79,7 +89,7 @@ public class Assignment_1_64050152_64050177 extends JPanel {
     }
 
     // Create Traingle and fill color in BufferedImage
-    public BufferedImage drawPolygon(Point[] points, Color color) {
+    public BufferedImage drawPolygonFill(Point[] points, Color lineColor, Color fillColor) {
 
         BufferedImage polyImage = new BufferedImage(601, 601, BufferedImage.TYPE_INT_ARGB);
         Graphics2D gPoly = polyImage.createGraphics();
@@ -98,10 +108,31 @@ public class Assignment_1_64050152_64050177 extends JPanel {
         }
 
         Polygon poly = new Polygon(xPoly, yPoly, xPoly.length);
-        gPoly.setColor(color);
+        gPoly.setColor(lineColor);
         gPoly.drawPolygon(poly);
 
-        floodfill(polyImage, x/xPoly.length, y/yPoly.length, new Color(0, 0, 0, 0), color);
+        floodfill(polyImage, x / xPoly.length, y / yPoly.length, new Color(0, 0, 0, 0), fillColor);
+
+        return polyImage;
+    }
+
+    // Create Traingle in BufferedImage
+    public BufferedImage drawPolygon(Point[] points, Color lineColor) {
+
+        BufferedImage polyImage = new BufferedImage(601, 601, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D gPoly = polyImage.createGraphics();
+
+        int[] xPoly = new int[points.length];
+        int[] yPoly = new int[points.length];
+
+        for (int i = 0; i < points.length; i++) {
+            xPoly[i] = points[i].x;
+            yPoly[i] = points[i].y;
+        }
+
+        Polygon poly = new Polygon(xPoly, yPoly, xPoly.length);
+        gPoly.setColor(lineColor);
+        gPoly.drawPolygon(poly);
 
         return polyImage;
     }
