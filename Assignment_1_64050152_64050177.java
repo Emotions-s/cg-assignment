@@ -17,7 +17,7 @@ public class Assignment_1_64050152_64050177 extends JPanel {
 
         f.add(m);
         f.setTitle("Assignment 1");
-        f.setSize(600, 600);
+        f.setSize(620, 640);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.setVisible(true);
     }
@@ -86,6 +86,7 @@ public class Assignment_1_64050152_64050177 extends JPanel {
         // Draw Rabbit organ
         drawLeftEar(layers);
         drawRightEar(layers);
+        drawNeck(layers);
 
         // Draw to Graphics
         drawLayerToImages(g, layers);
@@ -154,6 +155,33 @@ public class Assignment_1_64050152_64050177 extends JPanel {
         layers.add(drawPolygonFill(new Point[]{new Point(415,189), new Point(401,202), new Point(386,223), new Point(370,233), new Point(375, 256)}, new Color(28, 138, 152), new Color(28, 138, 152)));
         layers.add(drawPolygonFill(new Point[]{new Point(389,234), new Point(379,251), new Point(387,257)}, new Color(96, 218, 186), new Color(96, 218, 186)));
         layers.add(drawPolygonFill(new Point[]{new Point(378,251), new Point(376,254), new Point(399,276), new Point(404,268), new Point(402,260), new Point(388,258)}, new Color(118, 227, 195), new Color(118, 227, 195)));
+
+    }
+
+    public void drawNeck(ArrayList<BufferedImage> layers) {
+
+        layers.add(drawPolygonFill(new Point[]{new Point(301,554), new Point(264,535), new Point(269,563), new Point(287, 572)}, new Color(76, 19, 19), new Color(76, 19, 19)));
+        layers.add(drawPolygonFill(new Point[]{new Point(300,554), new Point(286,572), new Point(336,592)}, new Color(42, 11, 7), new Color(42, 11, 7)));
+        layers.add(drawPolygonFill(new Point[]{new Point(343,521), new Point(301,554), new Point(338,593)}, new Color(23, 0, 2), new Color(23, 0, 2)));
+        layers.add(drawPolygonFill(new Point[]{new Point(329,476), new Point(302,554), new Point(343,519)}, new Color(99, 16, 5), new Color(99, 16, 5)));
+        layers.add(drawPolygonFill(new Point[]{new Point(265,534), new Point(265,501), new Point(300,554)}, new Color(186, 71, 4), new Color(186, 71, 4)));
+        layers.add(drawPolygonFill(new Point[]{new Point(301,554), new Point(266,501), new Point(268,477), new Point(266,473), new Point(271,451), new Point(268,428), new Point(280,454), new Point(291,468), new Point(272,481)}, new Color(136, 66, 41), new Color(136, 66, 41)));
+        layers.add(drawPolygonFill(new Point[]{new Point(294,467), new Point(271,482), new Point(300,550)}, new Color(170, 50, 3), new Color(170, 50, 3)));
+        layers.add(drawPolygonFill(new Point[]{new Point(268,562), new Point(234,528), new Point(234,479), new Point(264,539)}, new Color(251, 166, 93), new Color(251, 166, 93)));
+        layers.add(drawPolygonFill(new Point[]{new Point(265,538), new Point(230,469), new Point(249,430), new Point(253,430), new Point(259,459), new Point(267,478)}, new Color(239, 128, 6), new Color(239, 128, 6)));
+        layers.add(drawPolygonFill(new Point[]{new Point(234,460), new Point(220,491), new Point(233,528)}, new Color(221, 143, 89), new Color(221, 143, 89)));
+        layers.add(drawPolygonFill(new Point[]{new Point(248,430), new Point(219,490), new Point(216,465), new Point(228,427)}, new Color(244, 190, 122), new Color(244, 190, 122)));
+        layers.add(drawPolygonFill(new Point[]{new Point(328,475), new Point(301,553), new Point(295,468), new Point(284,437), new Point(297,430)}, new Color(214, 172, 60), new Color(214, 172, 60)));
+        layers.add(drawPolygonFill(new Point[]{new Point(291,420), new Point(325,469), new Point(322,427), new Point(305,414)}, new Color(29, 29, 56), new Color(29, 29, 56)));
+        layers.add(drawPolygonFill(new Point[]{new Point(322,428), new Point(326,450), new Point(326,470), new Point(328,474), new Point(333,472), new Point(330,434)}, new Color(155, 143, 44), new Color(155, 143, 44)));
+        layers.add(drawPolygonFill(new Point[]{new Point(330,433), new Point(331,473), new Point(357,454)}, new Color(103, 67, 38), new Color(103, 67, 38)));
+        layers.add(drawPolygonFill(new Point[]{new Point(329,477), new Point(344,522), new Point(360,484)}, new Color(124, 58, 21), new Color(124, 58, 21)));
+        layers.add(drawPolygonFill(new Point[]{new Point(329,476), new Point(361,484), new Point(365,472), new Point(357,453)}, new Color(105, 39, 14), new Color(105, 39, 14)));
+        layers.add(drawPolygonFill(new Point[]{new Point(365,474), new Point(345,521), new Point(340,557), new Point(338,586), new Point(357,532)}, new Color(83, 11, 4), new Color(83, 11, 4)));
+        layers.add(drawPolygonFill(new Point[]{new Point(412,502), new Point(360,456), new Point(365,476), new Point(358,528), new Point(338,591)}, new Color(101, 31, 8), new Color(101, 31, 8)));
+        layers.add(drawPolygonFill(new Point[]{new Point(411,503), new Point(337,593), new Point(346,591), new Point(397,530), new Point(413,504)}, new Color(32, 2, 2), new Color(32, 2, 2)));
+        layers.add(drawPolygonFill(new Point[]{new Point(399,529), new Point(343,592), new Point(393,571)}, new Color(50, 7, 6), new Color(50, 7, 6)));
+        layers.add(drawPolygonFill(new Point[]{new Point(414,505), new Point(398,530), new Point(392,571), new Point(405,567)}, new Color(108, 20, 5), new Color(108, 20, 5)));
 
     }
 
