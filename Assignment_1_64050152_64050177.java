@@ -26,6 +26,7 @@ public class Assignment_1_64050152_64050177 extends JPanel {
     public void paintComponent(Graphics g) {
 
         drawBackGround(g);
+        drawRabbit(g);
     }
 
     // **********
@@ -72,6 +73,17 @@ public class Assignment_1_64050152_64050177 extends JPanel {
         layers.add(drawPolygonFill(new Point[] { new Point(519, 286), new Point(539, 210), new Point(600, 235) },
                 new Color(42, 45, 64, 255), new Color(62, 48, 61, 255)));
 
+        // Draw to Graphics
+        drawLayerToImages(g, layers);
+
+    }
+
+    public void drawRabbit(Graphics g){
+
+        // all layers
+        ArrayList<BufferedImage> layers = new ArrayList<>();
+
+        // Draw Rabbit organ
         drawLeftEar(layers);
         drawRightEar(layers);
 
