@@ -268,6 +268,9 @@ public class Assignment_1_64050152_64050177 extends JPanel {
         layers.add(drawPolygonFill(new Point[]{new Point(205,351), new Point(217,358), new Point(224,363), new Point(232,363), new Point(250,346), new Point(265,337), new Point(248,345), new Point(225,352), new Point(215,353)}, new Color(231, 217, 184), new Color(231, 217, 184)));
         layers.add(drawPolygonFill(new Point[]{new Point(297,302), new Point(294,306), new Point(292,309), new Point(291,313), new Point(290,317), new Point(288,323), new Point(305,305), new Point(300,304)}, new Color(179, 145, 120), new Color(179, 145, 120)));
         layers.add(drawPolygonFill(new Point[]{new Point(336,236), new Point(325,237), new Point(314,238), new Point(307,242), new Point(295,259), new Point(296,270), new Point(293,280), new Point(287,288), new Point(289,298), new Point(290,306), new Point(288,323), new Point(290,315), new Point(291,309), new Point(298,300), new Point(310,288), new Point(327,303), new Point(341,309), new Point(346,309), new Point(346,292), new Point(341,279), new Point(340,265), new Point(348,250), new Point(348,245), new Point(340,237)}, new Color(242, 239, 205), new Color(242, 239, 205)));
+        layers.add(drawPolygonFill(new Point[]{new Point(339,236), new Point(344,240), new Point(348,245), new Point(355,238), new Point(347,235)}, new Color(226, 233, 198), new Color(226, 233, 198)));
+        layers.add(drawPolygonFill(new Point[]{new Point(348,237), new Point(348,245), new Point(357,253), new Point(365,253), new Point(358,241), new Point(350,237)}, new Color(220, 234, 189), new Color(220, 234, 189)));
+        layers.add(drawPolygonFill(new Point[]{new Point(348,237), new Point(348,245), new Point(348,252), new Point(344,260), new Point(346,267), new Point(350,271), new Point(376,254), new Point(362,253)}, new Color(140, 215, 181), new Color(140, 215, 181)));
 
     }
 
