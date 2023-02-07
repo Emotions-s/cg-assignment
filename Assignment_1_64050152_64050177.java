@@ -90,6 +90,7 @@ public class Assignment_1_64050152_64050177 extends JPanel {
         drawForehead(layers);
         drawCheek(layers);
         drawMouth(layers);
+        drawNose(layers);
 
         // Draw to Graphics
         drawLayerToImages(g, layers);
@@ -332,6 +333,14 @@ public class Assignment_1_64050152_64050177 extends JPanel {
         layers.add(drawPolygonFill(new Point[]{new Point(223,401), new Point(240,415), new Point(256,428), new Point(242,408), new Point(239,399), new Point(236,399), new Point(231,401)}, new Color(235, 213, 164), new Color(235, 213, 164)));
         layers.add(drawPolygonFill(new Point[]{new Point(211,391), new Point(208,396), new Point(206,400), new Point(212,411), new Point(231,408), new Point(224,402), new Point(217,396)}, new Color(236, 189, 127), new Color(236, 189, 127)));
         layers.add(drawPolygonFill(new Point[]{new Point(212,410), new Point(220,419), new Point(228,424), new Point(237,429), new Point(256,429), new Point(242,416), new Point(232,408)}, new Color(224, 203, 161), new Color(224, 203, 161)));
+
+    }
+
+    public void drawNose(ArrayList<BufferedImage> layers) {
+
+        layers.add(drawPolygonFill(new Point[]{new Point(191,383), new Point(217,383), new Point(207,393), new Point(207,402), new Point(205,398)}, new Color(42, 3, 2), new Color(42, 3, 2)));
+        layers.add(drawPolygonFill(new Point[]{new Point(183,371), new Point(216,371), new Point(224,376), new Point(211,386), new Point(207,388), new Point(194,386)}, new Color(108, 20, 5), new Color(108, 20, 5)));
+        layers.add(drawPolygonFill(new Point[]{new Point(200,354), new Point(183,370), new Point(199,381), new Point(203,381), new Point(209,377), new Point(216,371)}, new Color(251, 172, 157), new Color(251, 172, 157)));
 
     }
 
