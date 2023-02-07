@@ -89,6 +89,7 @@ public class Assignment_1_64050152_64050177 extends JPanel {
         drawNeck(layers);
         drawForehead(layers);
         drawCheek(layers);
+        drawMouth(layers);
 
         // Draw to Graphics
         drawLayerToImages(g, layers);
@@ -321,6 +322,18 @@ public class Assignment_1_64050152_64050177 extends JPanel {
 
     }
 
+    public void drawMouth(ArrayList<BufferedImage> layers) {
+
+        layers.add(drawPolygonFill(new Point[]{new Point(182,371), new Point(180,375), new Point(180,380), new Point(174,385), new Point(174,391), new Point(178,396), new Point(190,383)}, new Color(235, 193, 116), new Color(235, 193, 116)));
+        layers.add(drawPolygonFill(new Point[]{new Point(189,381), new Point(177,395), new Point(182,406), new Point(197,391)}, new Color(241, 222, 173), new Color(241, 222, 173)));
+        layers.add(drawPolygonFill(new Point[]{new Point(197,391), new Point(182,407), new Point(187,414), new Point(191,419), new Point(206,404), new Point(205,400)}, new Color(214, 168, 103), new Color(214, 168, 103)));
+        layers.add(drawPolygonFill(new Point[]{new Point(206,404), new Point(192,419), new Point(198,423), new Point(201,424), new Point(207,422), new Point(215,417)}, new Color(205, 238, 209), new Color(205, 238, 209)));
+        layers.add(drawPolygonFill(new Point[]{new Point(226,376), new Point(211,390), new Point(224,401), new Point(228,402), new Point(239,399), new Point(239,392)}, new Color(242, 226, 187), new Color(242, 226, 187)));
+        layers.add(drawPolygonFill(new Point[]{new Point(223,401), new Point(240,415), new Point(256,428), new Point(242,408), new Point(239,399), new Point(236,399), new Point(231,401)}, new Color(235, 213, 164), new Color(235, 213, 164)));
+        layers.add(drawPolygonFill(new Point[]{new Point(211,391), new Point(208,396), new Point(206,400), new Point(212,411), new Point(231,408), new Point(224,402), new Point(217,396)}, new Color(236, 189, 127), new Color(236, 189, 127)));
+        layers.add(drawPolygonFill(new Point[]{new Point(212,410), new Point(220,419), new Point(228,424), new Point(237,429), new Point(256,429), new Point(242,416), new Point(232,408)}, new Color(224, 203, 161), new Color(224, 203, 161)));
+
+    }
 
     // *********
     // * Tools *
