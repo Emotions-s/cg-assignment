@@ -40,20 +40,14 @@ public class Assignment_1_64050152_64050177 extends JPanel {
         ArrayList<BufferedImage> layers = new ArrayList<>();
 
         // Create gradient layer
-        BufferedImage gradientLayer = makeGradient(0, 600, 600, 0, new Color(75, 35, 44, 255),
-                new Color(39, 36, 63, 255), 601, 601,
-                -45);
-        layers.add(gradientLayer);
+        layers.add(makeGradient(0, 600, 600, 0, new Color(75, 35, 44, 255), new Color(39, 36, 63, 255), 601, 601, -45));
 
         // Create upper layer
         BufferedImage backGround = new BufferedImage(601, 601, BufferedImage.TYPE_INT_ARGB);
-        Graphics2D gBackGround = backGround.createGraphics();
 
         // draw line and fill color
-        gBackGround.setColor(new Color(65, 34, 52, 255));
-        BresenhamLine(gBackGround, 0, 583, 600, 16);
-        floodfill(backGround, 200, 200, new Color(0, 0, 0, 0), new Color(28, 74, 89,
-                255));
+        makeLine(backGround, 0, 583, 600, 16, new Color(28, 74, 89, 255));
+        floodfill(backGround, 200, 200, new Color(0, 0, 0, 0), new Color(28, 74, 89, 255));
         layers.add(backGround);
 
         // tracery
@@ -360,8 +354,18 @@ public class Assignment_1_64050152_64050177 extends JPanel {
 
     public void drawEye(ArrayList<BufferedImage> layers) {
 
-        
+        layers.add(makeOvalFill(320, 283, 18, 19, new Color(127,21,21,255), new Color(68,14,14,255)));
+        layers.add(makePolygonFill(new Point[]{new Point(314, 302), new Point(299, 301), new Point(304, 284)}, new Color(68,14,14,255), new Color(68,14,14,255)));
+        layers.add(makeOvalFill(322, 284, 16, 16, new Color(2,15,21,255), new Color(3,3,55,255)));
 
+        BufferedImage eyeLight = new BufferedImage(601, 601, BufferedImage.TYPE_INT_ARGB);
+        makeCurve(eyeLight, 327, 275, 328, 279, 324, 284, 318, 284, new Color(0,64,118,255));
+        makeCurve(eyeLight, 327, 275, 334, 283, 332, 289, 318,284, new Color(2,139,181,255));
+        floodfill(eyeLight, 328,280, new Color(0, 0, 0, 0), new Color(0,190,218,255));
+        makeCurve(eyeLight, 303, 278, 307, 255, 324, 251, 338,276, Color.BLACK);
+        makeCurve(eyeLight, 306, 287, 305, 293, 311, 300, 318, 302, new Color(163,94,55,255));
+        makeLine(eyeLight, 310, 282, 314, 277, new Color(73,61,75,255));
+        layers.add(eyeLight);
     }
 
     // *********
@@ -440,7 +444,7 @@ public class Assignment_1_64050152_64050177 extends JPanel {
         }
 
         // fill color
-        floodfill(OvalImage, x, y, new Color(0, 0, 0, 0), fillColor);
+        floodfill(OvalImage, xc, yc, new Color(0, 0, 0, 0), fillColor);
 
         return OvalImage;
     }
@@ -530,7 +534,7 @@ public class Assignment_1_64050152_64050177 extends JPanel {
     }
 
     // fill color in shape
-    public BufferedImage floodfill(BufferedImage m, int x, int y, Color targetColor, Color replacementColor) {
+    public void floodfill(BufferedImage m, int x, int y, Color targetColor, Color replacementColor) {
         Graphics2D g2 = m.createGraphics();
         Queue<Point> q = new LinkedList<>();
 
@@ -563,12 +567,13 @@ public class Assignment_1_64050152_64050177 extends JPanel {
                 q.add(new Point(p.x - 1, p.y));
             }
         }
-
-        return m;
     }
 
     // Draw Curve Line
-    public void bezienCurve(Graphics g, int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4) {
+    public void makeCurve(BufferedImage image, int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4, Color color) {
+
+        Graphics2D gImage = image.createGraphics();
+        gImage.setColor(color);
 
         for (int i = 0; i <= 1000; i++) {
             double t = i / 1000.0;
@@ -583,12 +588,16 @@ public class Assignment_1_64050152_64050177 extends JPanel {
                     + 3 * Math.pow(t, 2) * (1 - t) * y3
                     + Math.pow(t, 3) * y4);
 
-            plot(g, x, y, 1);
+            plot(gImage, x, y, 1);
         }
     }
 
     // Draw Line
-    public void BresenhamLine(Graphics g, int x1, int y1, int x2, int y2) {
+    public void makeLine(BufferedImage image, int x1, int y1, int x2, int y2, Color color) {
+
+        Graphics2D gImage = image.createGraphics();
+        gImage.setColor(color);
+
         int dx = Math.abs(x2 - x1);
         int dy = Math.abs(y2 - y1);
 
@@ -610,7 +619,7 @@ public class Assignment_1_64050152_64050177 extends JPanel {
         int y = y1;
 
         for (int i = 0; i <= dx; i++) {
-            plot(g, x, y, 1);
+            plot(gImage, x, y, 1);
             if (D >= 0) {
                 if (isSwap) {
                     x += sx;
