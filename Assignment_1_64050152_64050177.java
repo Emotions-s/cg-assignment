@@ -17,7 +17,7 @@ public class Assignment_1_64050152_64050177 extends JPanel {
 
         f.add(m);
         f.setTitle("Assignment 1");
-        f.setSize(620, 640);
+        f.setSize(620, 650);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.setVisible(true);
     }
@@ -57,21 +57,34 @@ public class Assignment_1_64050152_64050177 extends JPanel {
         layers.add(backGround);
 
         // tracery
-        layers.add(drawPolygon(new Point[] { new Point(460, 150), new Point(539, 210), new Point(600, 150) },
-                new Color(72, 80, 93, 255)));
-
-        layers.add(drawPolygonFill(new Point[] { new Point(460, 150), new Point(539, 210), new Point(509, 174) },
-                new Color(72, 80, 93, 255), new Color(72, 80, 93, 255)));
-
-        layers.add(drawPolygon(new Point[] { new Point(600, 150), new Point(539, 210), new Point(600, 235) },
-                new Color(72, 80, 93, 255)));
-
-        layers.add(drawPolygonFill(
-                new Point[] { new Point(538, 211), new Point(516, 287), new Point(508, 290), new Point(460, 150) },
-                new Color(41,33,57,255), new Color(41,33,57,255)));
-
-        layers.add(drawPolygonFill(new Point[] { new Point(519, 286), new Point(539, 210), new Point(600, 235) },
-                new Color(42, 45, 64, 255), new Color(62, 48, 61, 255)));
+        layers.add(drawPolygon(new Point[] { new Point(460, 150), new Point(539, 210), new Point(600, 150) }, new Color(72, 80, 93, 255)));
+        layers.add(drawPolygonFill(new Point[] { new Point(460, 150), new Point(539, 210), new Point(509, 174) }, new Color(72, 80, 93, 255), new Color(72, 80, 93, 255)));
+        layers.add(drawPolygon(new Point[] { new Point(600, 150), new Point(539, 210), new Point(600, 235) }, new Color(72, 80, 93, 255)));
+        layers.add(drawPolygonFill( new Point[] { new Point(538, 211), new Point(516, 287), new Point(508, 290), new Point(460, 150) },new Color(41,33,57,255), new Color(41,33,57,255)));
+        layers.add(drawPolygonFill( new Point[] { new Point(508, 290), new Point(460, 150), new Point(449, 214)  },new Color(41,33,57,255), new Color(41,33,57,255)));
+        layers.add(drawPolygonFill( new Point[] { new Point(408, 198), new Point(460, 150), new Point(449, 214)  },new Color(53,39,64,255), new Color(53,39,64,255)));
+        layers.add(drawPolygonFill( new Point[] { new Point(408, 198), new Point(414, 236), new Point(449, 214)  },new Color(53,39,64,255), new Color(38,16,29,255)));
+        layers.add(drawPolygonFill( new Point[] { new Point(508, 290), new Point(474, 200), new Point(460, 150), new Point(489, 212)  },new Color(26,72,87,255), new Color(26,72,87,255)));
+        layers.add(drawPolygonFill( new Point[] { new Point(508, 290), new Point(414, 236), new Point(449, 214)  },new Color(41,33,57,255), new Color(41,33,57,255)));
+        layers.add(drawPolygon( new Point[] { new Point(508, 290), new Point(475, 249), new Point(449, 214), new Point(479, 248)  },new Color(26,72,87,255)));
+        layers.add(drawPolygonFill( new Point[] { new Point(508, 290), new Point(414, 236), new Point(485, 306)  },new Color(48,30,54,255), new Color(36,11,32,255)));
+        layers.add(drawPolygonFill(new Point[] { new Point(519, 286), new Point(539, 210), new Point(600, 235) }, new Color(42, 45, 64, 255), new Color(62, 48, 61, 255)));
+        layers.add(drawPolygonFill(new Point[] { new Point(519, 286), new Point(539, 210), new Point(600, 235), new Point(600, 247) }, new Color(42, 45, 64, 255), new Color(62, 48, 61, 255)));
+        layers.add(drawPolygonFill(new Point[] { new Point(519, 286), new Point(600, 351), new Point(600, 247) }, new Color(32,14,28,255), new Color(32,14,28,255)));
+        layers.add(drawPolygonFill(new Point[] { new Point(486, 394), new Point(587, 342), new Point(533, 413) }, new Color(23,5,5,255), new Color(23,5,5,255)));
+        layers.add(drawPolygonFill(new Point[] { new Point(600, 504), new Point(600, 351), new Point(587, 342), new Point(533, 413) }, new Color(32,11,20,255), new Color(32,11,20,255)));
+        layers.add(drawPolygonFill(new Point[] { new Point(486, 394), new Point(600, 504), new Point(533, 413) }, new Color(46,26,54,255), new Color(46,26,54,255)));
+        layers.add(drawPolygonFill(new Point[] { new Point(486, 394), new Point(600, 504), new Point(484, 508) }, new Color(47,29,43,255), new Color(47,29,43,255)));
+        layers.add(drawPolygonFill(new Point[] { new Point(592, 502), new Point(520, 432), new Point(501, 478) }, new Color(39,15,28,255), new Color(39,15,28,255)));
+        layers.add(drawPolygonFill(new Point[] { new Point(495, 498), new Point(500, 481), new Point(587, 502) }, new Color(32,11,20,255), new Color(32,11,20,255)));
+        layers.add(drawPolygonFill(new Point[] { new Point(495, 501), new Point(495, 505), new Point(578, 503) }, new Color(26,5,14,255), new Color(26,5,14,255)));
+        layers.add(drawPolygonFill(new Point[] { new Point(516, 288), new Point(587, 342), new Point(519, 286) }, new Color(24,38,73,255), new Color(24,38,73,255)));
+        layers.add(drawPolygonFill(new Point[] { new Point(516, 288), new Point(587, 342), new Point(485, 306) }, new Color(43,25,41,255), new Color(43,25,41,255)));
+        layers.add(drawPolygonFill(new Point[] { new Point(462, 317), new Point(587, 342), new Point(485, 306) }, new Color(39,10,30,255), new Color(39,10,30,255)));
+        layers.add(drawPolygonFill(new Point[] { new Point(462, 317), new Point(587, 342), new Point(486, 357) }, new Color(36,20,33,255), new Color(36,20,33,255)));
+        layers.add(drawPolygonFill(new Point[] { new Point(486, 394), new Point(587, 342), new Point(486, 357) }, new Color(36,12,26,255), new Color(36,12,26,255)));
+        layers.add(drawPolygonFill(new Point[] { new Point(462, 317), new Point(485, 306), new Point(414, 236) , new Point(377, 266) }, new Color(42,17,38,255), new Color(36,9,28,255)));
+        layers.add(drawPolygonFill(new Point[] { new Point(600, 600), new Point(558, 600), new Point(484, 508), new Point(600, 504) }, new Color(19,7,7,255), new Color(19,7,7,255)));
 
         // Draw to Graphics
         drawLayerToImages(g, layers);
