@@ -17,7 +17,7 @@ public class Assignment_1_64050152_64050177 extends JPanel {
 
         f.add(m);
         f.setTitle("Assignment 1");
-        f.setSize(620, 650);
+        f.setSize(600, 600);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.setVisible(true);
     }
