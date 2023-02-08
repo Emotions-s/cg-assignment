@@ -79,6 +79,7 @@ public class Assignment_1_64050152_64050177 extends JPanel {
         layers.add(makePolygonFill(new Point[] { new Point(486, 394), new Point(587, 342), new Point(486, 357) }, new Color(36,12,26,255), new Color(36,12,26,255)));
         layers.add(makePolygonFill(new Point[] { new Point(462, 317), new Point(485, 306), new Point(414, 236) , new Point(377, 266) }, new Color(42,17,38,255), new Color(36,9,28,255)));
         layers.add(makePolygonFill(new Point[] { new Point(600, 600), new Point(558, 600), new Point(484, 508), new Point(600, 504) }, new Color(19,7,7,255), new Color(19,7,7,255)));
+        layers.add(makePolygonFill(new Point[] { new Point(342, 600), new Point(558, 600), new Point(484, 508), new Point(228, 468) }, new Color(25,9,10,255), new Color(25,9,10,255)));
 
         // Draw to Graphics
         drawLayerToImages(g, layers);
@@ -99,6 +100,7 @@ public class Assignment_1_64050152_64050177 extends JPanel {
         drawMouth(layers);
         drawNose(layers);
         drawEye(layers);
+        drawMoustache(layers);
 
         // Draw to Graphics
         drawLayerToImages(g, layers);
@@ -368,6 +370,37 @@ public class Assignment_1_64050152_64050177 extends JPanel {
         layers.add(eyeLight);
     }
 
+    public void drawMoustache(ArrayList<BufferedImage> layers) {
+        BufferedImage moustache = new BufferedImage(601, 601, BufferedImage.TYPE_INT_ARGB);
+
+        makeMoustache(moustache, 285, 389, 304, 393, 338, 411, 353, 425, new Color(189,197,216,255));
+        makeMoustache(moustache, 289, 400, 306, 404, 357, 433, 385, 467, new Color(189,197,216,255));
+        makeMoustache(moustache, 285, 402, 301, 410, 366, 456, 406, 496, new Color(189,197,216,255));
+        makeMoustache(moustache, 289, 420, 297, 432, 320, 465, 333, 487, new Color(212,174,161,255));
+        makeMoustache(moustache, 286, 422, 290, 432, 307, 459, 322, 473, new Color(212,174,161,255));
+        makeMoustache(moustache, 279, 423, 282, 427, 294, 453, 302, 477, new Color(212,174,161,255));
+        makeMoustache(moustache, 272, 426, 277, 435, 287, 455, 292, 466, new Color(212,174,161,255));
+        makeMoustache(moustache, 270, 427, 272, 437, 281, 456, 288, 466, new Color(212,174,161,255));
+        makeMoustache(moustache, 265, 427, 267, 433, 269, 450, 268, 461, new Color(212,174,161,255));
+        makeMoustache(moustache, 261, 428, 262, 430, 265, 447, 264, 462, new Color(212,174,161,255));
+        makeMoustache(moustache, 254, 428, 256, 445, 263, 465, 265, 470, new Color(212,174,161,255));
+        makeMoustache(moustache, 246, 429, 242, 441, 231, 471, 221, 486, new Color(212,174,161,255));
+        makeMoustache(moustache, 246, 429, 242, 441, 231, 471, 221, 486, new Color(212,174,161,255));
+        makeMoustache(moustache, 229, 425, 226, 437, 216, 461, 209, 473, new Color(212,174,161,255));
+        makeMoustache(moustache, 204, 423, 187, 447, 181, 490, 186, 509, new Color(227,198,182,255));
+        makeMoustache(moustache, 200, 425, 183, 445, 173, 492, 181, 518, new Color(227,198,182,255));
+        makeMoustache(moustache, 198, 423, 184, 439, 173, 467, 181, 479, new Color(227,198,182,255));
+        makeMoustache(moustache, 193, 423, 168, 453, 161, 501, 166, 517, new Color(227,198,182,255));
+        makeMoustache(moustache, 189, 417, 171, 443, 161, 493, 167, 517, new Color(227,198,182,255));
+        makeMoustache(moustache, 184, 411, 175, 418, 151, 436, 138, 448, new Color(227,198,182,255));
+        makeMoustache(moustache, 182, 406, 168, 415, 146, 432, 135, 441, new Color(227,198,182,255));
+        makeMoustache(moustache, 176, 395, 167, 402, 153, 417, 145, 425, new Color(189,197,216,255));
+        makeMoustache(moustache, 179, 380, 168, 382, 138, 400, 119, 418, new Color(189,197,216,255));
+        makeMoustache(moustache, 179, 376, 170, 377, 149, 381, 137, 386, new Color(189,197,216,255));
+        makeMoustache(moustache, 195, 252, 187, 246, 173, 243, 165, 245, new Color(189,197,216,255));
+        layers.add(moustache);
+
+    }
     // *********
     // * Tools *
     // *********
@@ -566,6 +599,33 @@ public class Assignment_1_64050152_64050177 extends JPanel {
                 plot(g2, p.x - 1, p.y, 1);
                 q.add(new Point(p.x - 1, p.y));
             }
+        }
+    }
+
+    // make Moustache Curve Line fade out
+    public void makeMoustache(BufferedImage image, int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4, Color color) {
+
+        Graphics2D gImage = image.createGraphics();
+        double curAlpha = 255;
+
+        gImage.setColor(color);
+
+        for (int i = 0; i <= 1000; i++) {
+            double t = i / 1000.0;
+
+            int x = (int) (Math.pow((1 - t), 3) * x1
+            + 3 * t * Math.pow((1 - t), 2) * x2
+            + 3 * Math.pow(t, 2) * (1 - t) * x3
+            + Math.pow(t, 3) * x4);
+
+            int y = (int) (Math.pow((1 - t), 3) * y1
+            + 3 * t * Math.pow((1 - t), 2) * y2
+            + 3 * Math.pow(t, 2) * (1 - t) * y3
+            + Math.pow(t, 3) * y4);
+
+            plot(gImage, x, y, 1);
+            curAlpha -= (255 / 1000.0);
+            gImage.setColor(new Color(color.getRed(), color.getGreen(), color.getBlue(), (int)curAlpha));
         }
     }
 
