@@ -54,7 +54,7 @@ public class Assignment_2_64050152_64050177 extends JPanel implements Runnable {
         Graphics2D g2 = (Graphics2D) g;
         g2.setColor(Color.WHITE);
         g2.fillRect(0, 0, 600, 600);
-
+        
         drawCharacter(g2, (int) stevePositionx, (int) stevePositionY);
         drawScene(g2, (int) scene1PositionX, 0, Scenes.scenes[scene1cureent]);
         drawScene(g2, (int) scene2PositionX, 0, Scenes.scenes[scene2cureent]);
