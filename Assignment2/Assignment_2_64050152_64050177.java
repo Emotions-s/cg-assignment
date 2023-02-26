@@ -95,8 +95,6 @@ public class Assignment_2_64050152_64050177 extends JPanel implements Runnable {
         drawBlock(g2, 8 * bitOfBlock * aBit, 600 - bitOfBlock * aBit, BlockCodeColor.dirtColorCode);
         drawBlock(g2, 9 * bitOfBlock * aBit, 600 - bitOfBlock * aBit, BlockCodeColor.dirtColorCode);
 
-
-
     }
 
     @Override
