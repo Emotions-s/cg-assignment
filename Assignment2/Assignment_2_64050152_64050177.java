@@ -5,37 +5,36 @@ import java.awt.*;
 
 public class Assignment_2_64050152_64050177 extends JPanel implements Runnable {
 
+    final static int screenWidth = 600;
+    final static int screenHeight = 600;
+
     final int aBit = 4;
     final int bitOfBlock = 16;
     final int BlockOfScene = 10;
-    final double MAX_RATATION = 45;
+    final double MAX_RATATION = 60;
+
+    final int steveHeight = 32 * aBit;
+    final int steveWidth = 8 * aBit;
 
     double rotateAngle = 0;
     double roatateSpeed = 200;
 
     double speed = 300;
-
-    double sceneSpeed = 300;
-
-    double stevePositionX = 300;
-    double stevePositionY = 250;
-
-    double bodyWidth = 4 * aBit;
-    double bodyHeight = 12 * aBit;
-
-    double legWidth = 4 * aBit;
-    double legHeight = 12 * aBit;
-    double legPositionY = stevePositionY + (bodyHeight / 2);
-
-    double armWidth = 4 * aBit;
-    double armHeight = 12 * aBit;
-    double armPositionY = stevePositionY - (bodyHeight / 2);
-
-    double headSide = 8 * aBit;
-    double headPositionY = stevePositionY - (bodyHeight / 2) - (headSide / 2);
+    double sceneSpeed = 0;
 
     double scene1PositionX = 0;
     double scene2PositionX = -640;
+
+    double stevePositionx = screenWidth;
+    double stevePositionY = 3 * bitOfBlock * aBit;
+
+    boolean jump = false;
+    boolean down = false;
+    boolean end = false;
+    boolean startScene = false;
+
+    int scene1cureent = 0;
+    int scene2cureent = 1;
 
     public static void main(String[] args) {
         JFrame f = new JFrame();
@@ -43,7 +42,7 @@ public class Assignment_2_64050152_64050177 extends JPanel implements Runnable {
 
         f.add(m);
         f.setTitle("Assignment 2");
-        f.setSize(600, 600);
+        f.setSize(screenWidth, screenHeight);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.setVisible(true);
 
@@ -56,44 +55,9 @@ public class Assignment_2_64050152_64050177 extends JPanel implements Runnable {
         g2.setColor(Color.WHITE);
         g2.fillRect(0, 0, 600, 600);
 
-        g2.rotate(Math.toRadians(rotateAngle), stevePositionX, legPositionY);
-        drawBlock(g2, (int) (stevePositionX - (legWidth / 2)), (int) legPositionY, BlockCodeColor.rightLegColorCode);
-        g2.rotate(-Math.toRadians(rotateAngle), stevePositionX, legPositionY);
-
-        g2.rotate(-Math.toRadians(rotateAngle), stevePositionX, armPositionY);
-        drawBlock(g2, (int) (stevePositionX - (legWidth / 2)), (int) armPositionY, BlockCodeColor.rightArmColorCode);
-        g2.rotate(Math.toRadians(rotateAngle), stevePositionX, armPositionY);
-
-        drawBlock(g2, (int) (stevePositionX - (bodyWidth / 2)), (int) (stevePositionY - (bodyHeight / 2)),
-                BlockCodeColor.bodyColorCode);
-
-        drawBlock(g2, (int) (stevePositionX - (headSide / 2)), (int) (headPositionY - (headSide / 2)),
-                BlockCodeColor.headColorCode);
-
-        g2.rotate(-Math.toRadians(rotateAngle), stevePositionX, legPositionY);
-        drawBlock(g2, (int) (stevePositionX - (legWidth / 2)), (int) legPositionY, BlockCodeColor.leftLegColorCode);
-        g2.rotate(Math.toRadians(rotateAngle), stevePositionX, legPositionY);
-
-        g2.rotate(Math.toRadians(rotateAngle), stevePositionX, armPositionY);
-        drawBlock(g2, (int) (stevePositionX - (legWidth / 2)), (int) armPositionY, BlockCodeColor.leftArmColorCode);
-        g2.rotate(-Math.toRadians(rotateAngle), stevePositionX, armPositionY);
-
-        String[][][][] Scene1 = {
-            {null, null, null, null, null, null, null, null, null, null},
-            {null, null, null, null, null, null, null, null, null, null},
-            {null, null, null, null, null, null, null, null, null, null},
-            {null, null, null, null, null, null, null, null, null, null},
-            {null, null, null, null, null, null, null, null, null, null},
-            {BlockCodeColor.grassColorCode, BlockCodeColor.grassColorCode, BlockCodeColor.grassColorCode, BlockCodeColor.grassColorCode, BlockCodeColor.grassColorCode, BlockCodeColor.grassColorCode, BlockCodeColor.grassColorCode, BlockCodeColor.grassColorCode, BlockCodeColor.grassColorCode, BlockCodeColor.grassColorCode},
-            {BlockCodeColor.dirtColorCode, BlockCodeColor.dirtColorCode, BlockCodeColor.dirtColorCode, BlockCodeColor.dirtColorCode, BlockCodeColor.dirtColorCode, BlockCodeColor.dirtColorCode, BlockCodeColor.dirtColorCode, BlockCodeColor.dirtColorCode, BlockCodeColor.dirtColorCode, BlockCodeColor.dirtColorCode},
-            {BlockCodeColor.dirtColorCode, BlockCodeColor.dirtColorCode, BlockCodeColor.dirtColorCode, BlockCodeColor.dirtColorCode, BlockCodeColor.dirtColorCode, BlockCodeColor.dirtColorCode, BlockCodeColor.dirtColorCode, BlockCodeColor.dirtColorCode, BlockCodeColor.dirtColorCode, BlockCodeColor.dirtColorCode},
-            {BlockCodeColor.dirtColorCode, BlockCodeColor.dirtColorCode, BlockCodeColor.dirtColorCode, BlockCodeColor.dirtColorCode, BlockCodeColor.dirtColorCode, BlockCodeColor.dirtColorCode, BlockCodeColor.dirtColorCode, BlockCodeColor.dirtColorCode, BlockCodeColor.dirtColorCode, BlockCodeColor.dirtColorCode},
-            {BlockCodeColor.dirtColorCode, BlockCodeColor.dirtColorCode, BlockCodeColor.dirtColorCode, BlockCodeColor.dirtColorCode, BlockCodeColor.dirtColorCode, BlockCodeColor.dirtColorCode, BlockCodeColor.dirtColorCode, BlockCodeColor.dirtColorCode, BlockCodeColor.dirtColorCode, BlockCodeColor.dirtColorCode}
-        };
-
-        drawScene(g2, (int)scene1PositionX, 0, Scene1);
-        drawScene(g2, (int)scene2PositionX, 0, Scene1);
-
+        drawCharacter(g2, (int) stevePositionx, (int) stevePositionY);
+        drawScene(g2, (int) scene1PositionX, 0, Scenes.scenes[scene1cureent]);
+        drawScene(g2, (int) scene2PositionX, 0, Scenes.scenes[scene2cureent]);
     }
 
     @Override
@@ -111,6 +75,15 @@ public class Assignment_2_64050152_64050177 extends JPanel implements Runnable {
             scene1PositionX += sceneSpeed * elapsedTime / 1000.0;
             scene2PositionX += sceneSpeed * elapsedTime / 1000.0;
 
+            stevePositionx -= speed * elapsedTime / 1000.0;
+
+            if (stevePositionx <= screenWidth / 2 && startScene == false) {
+                speed = 0;
+                sceneSpeed = 300;
+                stevePositionx = screenWidth / 2;
+                startScene = true;
+            }
+
             if (rotateAngle >= MAX_RATATION) {
                 rotateAngle = MAX_RATATION;
                 roatateSpeed = -roatateSpeed;
@@ -119,14 +92,38 @@ public class Assignment_2_64050152_64050177 extends JPanel implements Runnable {
                 roatateSpeed = -roatateSpeed;
             }
 
+            if (scene1PositionX >= stevePositionx && jump == false) {
+                stevePositionY -= bitOfBlock * aBit;
+                jump = true;
+                down = false;
+            }
+
+            if (scene2PositionX >= stevePositionx && down == false) {
+                stevePositionY += bitOfBlock * aBit;
+                jump = false;
+                down = true;
+            }
+
             if (scene1PositionX >= 600) {
                 scene1PositionX = -640;
+                scene1cureent += 2;
             }
             if (scene2PositionX >= 600) {
                 scene2PositionX = -640;
+                scene2cureent += 2;
             }
+
+            if (scene2cureent >= Scenes.scenes.length - 1 || scene1cureent >= Scenes.scenes.length - 1) {
+                sceneSpeed = 0;
+                speed = 300;
+            }
+
             repaint();
         }
+    }
+
+    public void jump() {
+        stevePositionY -= bitOfBlock * aBit;
     }
 
     public void drawBlock(Graphics2D g2, int x, int y, String colorCode[][]) {
@@ -137,6 +134,55 @@ public class Assignment_2_64050152_64050177 extends JPanel implements Runnable {
                 g2.fillRect(dx, dy, aBit, aBit);
             }
         }
+    }
+
+    public void drawCharacter(Graphics2D g2, int x, int y) {
+
+        final double bodyWidth = 4 * aBit;
+        final double bodyHeight = 12 * aBit;
+
+        final double headSide = 8 * aBit;
+
+        double headPositionY = y;
+        double bodyPositionY = y + headSide;
+        double legPositionY = y + headSide + bodyHeight;
+        double armPositionY = y + headSide;
+
+        double headPositionX = x;
+        double bodyPositionX = x + ((headSide - bodyWidth) / 2);
+        double legPositionX = x + ((headSide - bodyWidth) / 2);
+        double armPositionX = x + ((headSide - bodyWidth) / 2);
+
+        double rotatePositionX = x + (headSide / 2);
+
+        double armRotatePositionY = y + headSide;
+        double legRotatePositionY = y + headSide + bodyHeight;
+
+        // right arm
+        g2.rotate(Math.toRadians(rotateAngle), rotatePositionX, armRotatePositionY);
+        drawBlock(g2, (int) armPositionX, (int) armPositionY, BlockCodeColor.rightArmColorCode);
+        g2.rotate(-Math.toRadians(rotateAngle), rotatePositionX, armRotatePositionY);
+
+        // right leg
+        g2.rotate(-Math.toRadians(rotateAngle), rotatePositionX, legRotatePositionY);
+        drawBlock(g2, (int) legPositionX, (int) legPositionY, BlockCodeColor.rightLegColorCode);
+        g2.rotate(Math.toRadians(rotateAngle), rotatePositionX, legRotatePositionY);
+
+        // body
+        drawBlock(g2, (int) bodyPositionX, (int) bodyPositionY, BlockCodeColor.bodyColorCode);
+
+        // head
+        drawBlock(g2, (int) headPositionX, (int) headPositionY, BlockCodeColor.headColorCode);
+
+        // left arm
+        g2.rotate(-Math.toRadians(rotateAngle), rotatePositionX, armPositionY);
+        drawBlock(g2, (int) armPositionX, (int) armPositionY, BlockCodeColor.leftArmColorCode);
+        g2.rotate(Math.toRadians(rotateAngle), rotatePositionX, armPositionY);
+
+        // left leg
+        g2.rotate(Math.toRadians(rotateAngle), rotatePositionX, legPositionY);
+        drawBlock(g2, (int) legPositionX, (int) legPositionY, BlockCodeColor.leftLegColorCode);
+        g2.rotate(-Math.toRadians(rotateAngle), rotatePositionX, legPositionY);
     }
 
     public void drawScene(Graphics2D g2, int x, int y, String[][][][] blockCodeColors) {
