@@ -2,12 +2,12 @@ public class Scenes {
 
     private static String[][][][] scene1 = {
         {null, null, Block.oakleaf, Block.oakleaf, Block.oakleaf, null, null, null, null, null},
-        {null, null, Block.oakleaf, Block.oakLogLeaf, Block.oakleaf, null, null, null, null, null},
-        {null, Block.oakleaf, Block.oakleaf, Block.oakLogLeaf, Block.oakleaf, Block.oakleaf, null, null, null, null},
-        {null, Block.oakleaf, Block.oakleaf, Block.oakLogLeaf, Block.oakleaf, Block.oakleaf, null, null, null, null},
+        {null, null, Block.oakleaf, Block.oakleaf, Block.oakleaf, null, null, null, null, null},
+        {null, Block.oakleaf, Block.oakleaf, Block.oakleaf, Block.oakleaf, Block.oakleaf, null, null, null, null},
+        {null, Block.oakleaf, Block.oakleaf, Block.oakleaf, Block.oakleaf, Block.oakleaf, null, null, null, null},
         {null, null, null, Block.oakLog, null, null, null, null, null, null},
         {null, null, null, Block.oakLog, null, null, null, null, null, null},
-        {null, null, null, Block.oakLog, Block.craftingTable, null, null, null, null, null},
+        {null, null, null, Block.oakLog, Block.craftingTable, null, Block.orangeTulip, null, null, null},
         {Block.grass, Block.grass, Block.grass, Block.grass, Block.grass, Block.grass, Block.grass, Block.grass, Block.grass, Block.grass},
         {Block.dirt, Block.dirt, Block.dirt, Block.dirt, Block.dirt, Block.dirt, Block.dirt, Block.dirt, Block.dirt, Block.dirt},
         {Block.dirt, Block.dirt, Block.dirt, Block.dirt, Block.dirt, Block.dirt, Block.dirt, Block.dirt, Block.dirt, Block.dirt},
@@ -66,8 +66,8 @@ public class Scenes {
     };
 
     private static String[][][][] scene4 = {
-        {null, null, null, Block.oakleaf, Block.oakleaf, Block.oakLogLeaf, Block.oakleaf, Block.oakleaf, null, null},
-        {null, null, null, Block.oakleaf, Block.oakleaf, Block.oakLogLeaf, Block.oakleaf, Block.oakleaf, null, null},
+        {null, null, null, Block.oakleaf, Block.oakleaf, Block.oakleaf, Block.oakleaf, Block.oakleaf, null, null},
+        {null, null, null, Block.oakleaf, Block.oakleaf, Block.oakleaf, Block.oakleaf, Block.oakleaf, null, null},
         {null, null, null, null, null, Block.oakLog, null, null, null, null},
         {null, null, null, null, null, Block.oakLog, null, null, null, null},
         {Block.grass, Block.grass, Block.grass, Block.grass, Block.grass, Block.grass, Block.grass, Block.grass, Block.grass, Block.grass},
@@ -149,7 +149,7 @@ public class Scenes {
         {null, Block.oakleaf, Block.oakleaf, Block.oakleaf, null, null, null, null, null, null},
         {null, Block.oakleaf, Block.oakleaf, Block.oakleaf, null, null, null, null, null, null},
         {Block.oakleaf, Block.oakleaf, Block.oakleaf, Block.oakleaf, Block.oakleaf, null, null, null, null, null},
-        {Block.oakleaf, Block.oakleaf, Block.oakLogLeaf, Block.oakleaf, Block.oakleaf, null, null, null, null, null},
+        {Block.oakleaf, Block.oakleaf, Block.oakleaf, Block.oakleaf, Block.oakleaf, null, null, null, null, null},
         {null, null, Block.oakLog, null, null, null, null, null, null, null},
         {null, Block.furnace, Block.oakLog, Block.chest, null, null, null, null, null, null},
         {Block.grass, Block.grass, Block.grass, Block.grass, Block.grass, Block.grass, Block.grass, Block.grass, Block.grass, Block.grass},

@@ -151,7 +151,15 @@ public class Assignment_2_64050152_64050177 extends JPanel implements Runnable {
 
         for (int i = 0, dy = y; i < colorCode.length; i++, dy += aBit) {
             for (int j = 0, dx = x; j < colorCode[0].length; j++, dx += aBit) {
-                g2.setColor(Color.decode(colorCode[i][j]));
+                if (colorCode[i][j] == "#000000") {
+                    g2.setColor(new Color(0, 0, 0, 200));
+                }
+                else if (colorCode[i][j] == "#xxxxxx") {
+                    continue;
+                }
+                else {
+                    g2.setColor(Color.decode(colorCode[i][j]));
+                }
                 g2.fillRect(dx, dy, aBit, aBit);
             }
         }
