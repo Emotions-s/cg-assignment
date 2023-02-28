@@ -160,28 +160,28 @@ public class Assignment_2_64050152_64050177 extends JPanel implements Runnable {
 
         // right arm
         g2.rotate(Math.toRadians(rotateAngle), rotatePositionX, armRotatePositionY);
-        drawBlock(g2, (int) armPositionX, (int) armPositionY, BlockCodeColor.rightArmColorCode);
+        drawBlock(g2, (int) armPositionX, (int) armPositionY, Block.rightArmColorCode);
         g2.rotate(-Math.toRadians(rotateAngle), rotatePositionX, armRotatePositionY);
 
         // right leg
         g2.rotate(-Math.toRadians(rotateAngle), rotatePositionX, legRotatePositionY);
-        drawBlock(g2, (int) legPositionX, (int) legPositionY, BlockCodeColor.rightLegColorCode);
+        drawBlock(g2, (int) legPositionX, (int) legPositionY, Block.rightLegColorCode);
         g2.rotate(Math.toRadians(rotateAngle), rotatePositionX, legRotatePositionY);
 
         // body
-        drawBlock(g2, (int) bodyPositionX, (int) bodyPositionY, BlockCodeColor.bodyColorCode);
+        drawBlock(g2, (int) bodyPositionX, (int) bodyPositionY, Block.bodyColorCode);
 
         // head
-        drawBlock(g2, (int) headPositionX, (int) headPositionY, BlockCodeColor.headColorCode);
+        drawBlock(g2, (int) headPositionX, (int) headPositionY, Block.headColorCode);
 
         // left arm
         g2.rotate(-Math.toRadians(rotateAngle), rotatePositionX, armPositionY);
-        drawBlock(g2, (int) armPositionX, (int) armPositionY, BlockCodeColor.leftArmColorCode);
+        drawBlock(g2, (int) armPositionX, (int) armPositionY, Block.leftArmColorCode);
         g2.rotate(Math.toRadians(rotateAngle), rotatePositionX, armPositionY);
 
         // left leg
         g2.rotate(Math.toRadians(rotateAngle), rotatePositionX, legPositionY);
-        drawBlock(g2, (int) legPositionX, (int) legPositionY, BlockCodeColor.leftLegColorCode);
+        drawBlock(g2, (int) legPositionX, (int) legPositionY, Block.leftLegColorCode);
         g2.rotate(-Math.toRadians(rotateAngle), rotatePositionX, legPositionY);
     }
 

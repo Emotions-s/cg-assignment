@@ -1,4 +1,4 @@
-public class BlockCodeColor {
+public class Block {
     static final String grassColorCode[][] = {
         {"#5eb635","#60b838","#5db534","#4ea823","#4ea823","#58b12f","#47a119","#55ae2b","#68c041","#60b838","#53ac29","#4fa925","#52ab27","#49a31c","#359200","#56af2d"},
         {"#5fb736","#55ae2b","#7cbb4a","#73b240","#75b443","#5e3b25","#51aa26","#4aa41d","#47a119","#85c454","#82c151","#5db534","#49a31c","#55ae2b","#4fa925","#54ad2a"},
