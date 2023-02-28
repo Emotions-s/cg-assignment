@@ -6,11 +6,11 @@ public class Scenes {
         {null, null, null, null, null, null, null, null, null, null},
         {null, null, null, null, null, null, null, null, null, null},
         {null, null, null, null, null, null, null, null, null, null},
-        {Block.grassColorCode, Block.grassColorCode, Block.grassColorCode, Block.grassColorCode, Block.grassColorCode, Block.grassColorCode, Block.grassColorCode, Block.grassColorCode, Block.grassColorCode, Block.grassColorCode},
-        {Block.dirtColorCode, Block.dirtColorCode, Block.dirtColorCode, Block.dirtColorCode, Block.dirtColorCode, Block.dirtColorCode, Block.dirtColorCode, Block.dirtColorCode, Block.dirtColorCode, Block.dirtColorCode},
-        {Block.dirtColorCode, Block.dirtColorCode, Block.dirtColorCode, Block.dirtColorCode, Block.dirtColorCode, Block.dirtColorCode, Block.dirtColorCode, Block.dirtColorCode, Block.dirtColorCode, Block.dirtColorCode},
-        {Block.dirtColorCode, Block.dirtColorCode, Block.dirtColorCode, Block.dirtColorCode, Block.dirtColorCode, Block.dirtColorCode, Block.dirtColorCode, Block.dirtColorCode, Block.dirtColorCode, Block.dirtColorCode},
-        {Block.dirtColorCode, Block.dirtColorCode, Block.dirtColorCode, Block.dirtColorCode, Block.dirtColorCode, Block.dirtColorCode, Block.dirtColorCode, Block.dirtColorCode, Block.dirtColorCode, Block.dirtColorCode}
+        {Block.grass, Block.grass, Block.grass, Block.grass, Block.grass, Block.grass, Block.grass, Block.grass, Block.grass, Block.grass},
+        {Block.dirt, Block.dirt, Block.dirt, Block.dirt, Block.dirt, Block.dirt, Block.dirt, Block.dirt, Block.dirt, Block.dirt},
+        {Block.dirt, Block.dirt, Block.dirt, Block.dirt, Block.dirt, Block.dirt, Block.dirt, Block.dirt, Block.dirt, Block.dirt},
+        {Block.dirt, Block.dirt, Block.dirt, Block.dirt, Block.dirt, Block.dirt, Block.dirt, Block.dirt, Block.dirt, Block.dirt},
+        {Block.dirt, Block.dirt, Block.dirt, Block.dirt, Block.dirt, Block.dirt, Block.dirt, Block.dirt, Block.dirt, Block.dirt}
     };
 
     private static String[][][][] scene3 = {
@@ -18,12 +18,12 @@ public class Scenes {
         {null, null, null, null, null, null, null, null, null, null},
         {null, null, null, null, null, null, null, null, null, null},
         {null, null, null, null, null, null, null, null, null, null},
-        {Block.grassColorCode, Block.grassColorCode, Block.grassColorCode, Block.grassColorCode, Block.grassColorCode, Block.grassColorCode, Block.grassColorCode, Block.grassColorCode, Block.grassColorCode, Block.grassColorCode},
-        {Block.dirtColorCode, Block.dirtColorCode, Block.dirtColorCode, Block.dirtColorCode, Block.dirtColorCode, Block.dirtColorCode, Block.dirtColorCode, Block.dirtColorCode, Block.dirtColorCode, Block.dirtColorCode},
-        {Block.dirtColorCode, Block.dirtColorCode, Block.dirtColorCode, Block.dirtColorCode, Block.dirtColorCode, Block.dirtColorCode, Block.dirtColorCode, Block.dirtColorCode, Block.dirtColorCode, Block.dirtColorCode},
-        {Block.dirtColorCode, Block.dirtColorCode, Block.dirtColorCode, Block.dirtColorCode, Block.dirtColorCode, Block.dirtColorCode, Block.dirtColorCode, Block.dirtColorCode, Block.dirtColorCode, Block.dirtColorCode},
-        {Block.dirtColorCode, Block.dirtColorCode, Block.dirtColorCode, Block.dirtColorCode, Block.dirtColorCode, Block.dirtColorCode, Block.dirtColorCode, Block.dirtColorCode, Block.dirtColorCode, Block.dirtColorCode},
-        {Block.dirtColorCode, Block.dirtColorCode, Block.dirtColorCode, Block.dirtColorCode, Block.dirtColorCode, Block.dirtColorCode, Block.dirtColorCode, Block.dirtColorCode, Block.dirtColorCode, Block.dirtColorCode}
+        {Block.grass, Block.grass, Block.grass, Block.grass, Block.grass, Block.grass, Block.grass, Block.grass, Block.grass, Block.grass},
+        {Block.dirt, Block.dirt, Block.dirt, Block.dirt, Block.dirt, Block.dirt, Block.dirt, Block.dirt, Block.dirt, Block.dirt},
+        {Block.dirt, Block.dirt, Block.dirt, Block.dirt, Block.dirt, Block.dirt, Block.dirt, Block.dirt, Block.dirt, Block.dirt},
+        {Block.dirt, Block.dirt, Block.dirt, Block.dirt, Block.dirt, Block.dirt, Block.dirt, Block.dirt, Block.dirt, Block.dirt},
+        {Block.dirt, Block.dirt, Block.dirt, Block.dirt, Block.dirt, Block.dirt, Block.dirt, Block.dirt, Block.dirt, Block.dirt},
+        {Block.dirt, Block.dirt, Block.dirt, Block.dirt, Block.dirt, Block.dirt, Block.dirt, Block.dirt, Block.dirt, Block.dirt}
     };
 
     private static String[][][][] end = {
