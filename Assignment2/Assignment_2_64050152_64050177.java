@@ -1,5 +1,6 @@
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import java.awt.image.BufferedImage;
 
 import java.awt.*;
 
@@ -17,7 +18,7 @@ public class Assignment_2_64050152_64050177 extends JPanel implements Runnable {
     final int steveWidth = 8 * aBit;
 
     double rotateAngle = 0;
-    double roatateSpeed = 200;
+    double roatateSpeed = 500;
 
     double speed = 300;
     double sceneSpeed = 0;
@@ -26,7 +27,7 @@ public class Assignment_2_64050152_64050177 extends JPanel implements Runnable {
     double scene2PositionX = -640;
 
     double stevePositionx = screenWidth;
-    double stevePositionY = 3 * bitOfBlock * aBit;
+    double stevePositionY = (10 - Scenes.stayBlock[0]) * bitOfBlock * aBit - (steveHeight);
 
     boolean jump = false;
     boolean down = false;
@@ -36,13 +37,16 @@ public class Assignment_2_64050152_64050177 extends JPanel implements Runnable {
     int scene1cureent = 0;
     int scene2cureent = 1;
 
+    int backScene1cureent = 0;
+    int backScene2cureent = 1;
+
     public static void main(String[] args) {
         JFrame f = new JFrame();
         Assignment_2_64050152_64050177 m = new Assignment_2_64050152_64050177();
 
         f.add(m);
         f.setTitle("Assignment 2");
-        f.setSize(screenWidth, screenHeight);
+        f.setSize(600, 600);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.setVisible(true);
 
@@ -52,12 +56,14 @@ public class Assignment_2_64050152_64050177 extends JPanel implements Runnable {
     @Override
     public void paintComponent(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
-        g2.setColor(Color.WHITE);
+        g2.setColor(Color.decode("#6caaff"));
         g2.fillRect(0, 0, 600, 600);
-        
-        drawCharacter(g2, (int) stevePositionx, (int) stevePositionY);
+
+        drawBackScene(g2, (int) scene1PositionX, 0, Scenes.scenesBack[scene1cureent]);
+        drawBackScene(g2, (int) scene2PositionX, 0, Scenes.scenesBack[scene2cureent]);
         drawScene(g2, (int) scene1PositionX, 0, Scenes.scenes[scene1cureent]);
         drawScene(g2, (int) scene2PositionX, 0, Scenes.scenes[scene2cureent]);
+        drawCharacter(g2, (int) stevePositionx, (int) stevePositionY);
     }
 
     @Override
@@ -92,23 +98,34 @@ public class Assignment_2_64050152_64050177 extends JPanel implements Runnable {
                 roatateSpeed = -roatateSpeed;
             }
 
-            if (scene1PositionX >= stevePositionx && jump == false) {
-                stevePositionY -= bitOfBlock * aBit;
-                jump = true;
-                down = false;
+            if (scene1PositionX >= stevePositionx && Scenes.stayBlock[scene1cureent] != -1
+                    && Scenes.stayBlock[scene1cureent + 1] != -1) {
+                System.out.println(scene1cureent);
+                if (Scenes.stayBlock[scene1cureent] < Scenes.stayBlock[scene2cureent]) {
+                    jump();
+                } else if (Scenes.stayBlock[scene1cureent] > Scenes.stayBlock[scene2cureent]) {
+                    down();
+                }
+                Scenes.stayBlock[scene1cureent] = -1;
             }
 
-            if (scene2PositionX >= stevePositionx && down == false) {
-                stevePositionY += bitOfBlock * aBit;
-                jump = false;
-                down = true;
+            if (scene2PositionX >= stevePositionx && Scenes.stayBlock[scene2cureent] != -1
+                    && Scenes.stayBlock[scene2cureent + 1] != -1) {
+                System.out.println(scene2cureent);
+                if (Scenes.stayBlock[scene2cureent] < Scenes.stayBlock[scene1cureent]) {
+                    jump();
+                } else if (Scenes.stayBlock[scene2cureent] > Scenes.stayBlock[scene1cureent]) {
+                    down();
+                }
+                Scenes.stayBlock[scene2cureent] = -1;
             }
 
-            if (scene1PositionX >= 600) {
+            if (scene1PositionX >= 640) {
                 scene1PositionX = -640;
                 scene1cureent += 2;
             }
-            if (scene2PositionX >= 600) {
+
+            if (scene2PositionX >= 640) {
                 scene2PositionX = -640;
                 scene2cureent += 2;
             }
@@ -124,6 +141,10 @@ public class Assignment_2_64050152_64050177 extends JPanel implements Runnable {
 
     public void jump() {
         stevePositionY -= bitOfBlock * aBit;
+    }
+
+    public void down() {
+        stevePositionY += bitOfBlock * aBit;
     }
 
     public void drawBlock(Graphics2D g2, int x, int y, String colorCode[][]) {
@@ -160,33 +181,35 @@ public class Assignment_2_64050152_64050177 extends JPanel implements Runnable {
 
         // right arm
         g2.rotate(Math.toRadians(rotateAngle), rotatePositionX, armRotatePositionY);
-        drawBlock(g2, (int) armPositionX, (int) armPositionY, BlockCodeColor.rightArmColorCode);
+        drawBlock(g2, (int) armPositionX, (int) armPositionY, Block.rightArmColorCode);
         g2.rotate(-Math.toRadians(rotateAngle), rotatePositionX, armRotatePositionY);
 
         // right leg
         g2.rotate(-Math.toRadians(rotateAngle), rotatePositionX, legRotatePositionY);
-        drawBlock(g2, (int) legPositionX, (int) legPositionY, BlockCodeColor.rightLegColorCode);
+        drawBlock(g2, (int) legPositionX, (int) legPositionY, Block.rightLegColorCode);
         g2.rotate(Math.toRadians(rotateAngle), rotatePositionX, legRotatePositionY);
 
         // body
-        drawBlock(g2, (int) bodyPositionX, (int) bodyPositionY, BlockCodeColor.bodyColorCode);
+        drawBlock(g2, (int) bodyPositionX, (int) bodyPositionY, Block.bodyColorCode);
 
         // head
-        drawBlock(g2, (int) headPositionX, (int) headPositionY, BlockCodeColor.headColorCode);
+        drawBlock(g2, (int) headPositionX, (int) headPositionY, Block.headColorCode);
 
         // left arm
         g2.rotate(-Math.toRadians(rotateAngle), rotatePositionX, armPositionY);
-        drawBlock(g2, (int) armPositionX, (int) armPositionY, BlockCodeColor.leftArmColorCode);
+        drawBlock(g2, (int) armPositionX, (int) armPositionY, Block.leftArmColorCode);
         g2.rotate(Math.toRadians(rotateAngle), rotatePositionX, armPositionY);
 
         // left leg
         g2.rotate(Math.toRadians(rotateAngle), rotatePositionX, legPositionY);
-        drawBlock(g2, (int) legPositionX, (int) legPositionY, BlockCodeColor.leftLegColorCode);
+        drawBlock(g2, (int) legPositionX, (int) legPositionY, Block.leftLegColorCode);
         g2.rotate(-Math.toRadians(rotateAngle), rotatePositionX, legPositionY);
     }
 
     public void drawScene(Graphics2D g2, int x, int y, String[][][][] blockCodeColors) {
-
+        if (blockCodeColors == null) {
+            return;
+        }
         for (int i = 0, dy = y; i < blockCodeColors.length; i++, dy += bitOfBlock * aBit) {
             for (int j = 0, dx = x; j < blockCodeColors[0].length; j++, dx += bitOfBlock * aBit) {
                 if (blockCodeColors[i][j] != null) {
@@ -194,5 +217,23 @@ public class Assignment_2_64050152_64050177 extends JPanel implements Runnable {
                 }
             }
         }
+    }
+
+    public void drawBackScene(Graphics2D g2, int x, int y, String[][][][] blockCodeColors) {
+        if (blockCodeColors == null) {
+            return;
+        }
+        BufferedImage bf = new BufferedImage(601, 601, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D gDark = bf.createGraphics();
+        gDark.setColor(new Color(0, 0, 0, 64));
+        for (int i = 0, dy = y; i < blockCodeColors.length; i++, dy += bitOfBlock * aBit) {
+            for (int j = 0, dx = x; j < blockCodeColors[0].length; j++, dx += bitOfBlock * aBit) {
+                if (blockCodeColors[i][j] != null) {
+                    drawBlock(g2, dx, dy, blockCodeColors[i][j]);
+                    gDark.fillRect(dx, dy, (aBit * bitOfBlock), (aBit * bitOfBlock));
+                }
+            }
+        }
+        g2.drawImage(bf, 0, 0, null);
     }
 }
