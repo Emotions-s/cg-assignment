@@ -103,9 +103,9 @@ public class Assignment_2_64050152_64050177 extends JPanel implements Runnable {
         g2.setColor(Color.decode("#6caaff"));
         g2.fillRect(0, 0, 600, 600);
 
+        g.drawImage(midpointCircle(g,(int) sunPositionX,(int) sunPositionY, 30), 0, 0, null);
         drawBackScene(g2, (int) scene1PositionX, 0, Scenes.scenesBack[scene1cureent]);
         drawBackScene(g2, (int) scene2PositionX, 0, Scenes.scenesBack[scene2cureent]);
-        g.drawImage(midpointCircle(g,(int) sunPositionX,(int) sunPositionY, 30), 0, 0, null);
         drawScene(g2, (int) scene1PositionX, 0, Scenes.scenes[scene1cureent]);
         drawScene(g2, (int) scene2PositionX, 0, Scenes.scenes[scene2cureent]);
         drawCharacter(g2, (int) stevePositionX, (int) stevePositionY);
