@@ -134,10 +134,10 @@ public class Assignment_2_64050152_64050177 extends JPanel implements Runnable {
         drawCloudG1(g, 420, 35);
         drawCloudG1(g, 50, 45);
         drawCloudG2(g, 210, 80);
-        drawBackScene(g2, (int) scene1PositionX, 0, Scenes.scenesBack[scene1cureent]);
-        drawBackScene(g2, (int) scene2PositionX, 0, Scenes.scenesBack[scene2cureent]);
-        drawScene(g2, (int) scene1PositionX, 0, Scenes.scenes[scene1cureent]);
-        drawScene(g2, (int) scene2PositionX, 0, Scenes.scenes[scene2cureent]);
+        drawBackScene(g2, (int) scene1PositionX, 0, Scenes.scenesBack[scene1current]);
+        drawBackScene(g2, (int) scene2PositionX, 0, Scenes.scenesBack[scene2current]);
+        drawScene(g2, (int) scene1PositionX, 0, Scenes.scenes[scene1current]);
+        drawScene(g2, (int) scene2PositionX, 0, Scenes.scenes[scene2current]);
         drawCharacter(g2, (int) stevePositionX, (int) stevePositionY);
         drawBee(g2, (int) beePositionX, (int) beePositionY);
         drawchicken(g2, (int) chickenPositionX, (int) chickenPositionY);
