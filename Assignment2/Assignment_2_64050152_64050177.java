@@ -104,6 +104,9 @@ public class Assignment_2_64050152_64050177 extends JPanel implements Runnable {
         g2.fillRect(0, 0, 600, 600);
 
         g.drawImage(midpointCircle(g,(int) sunPositionX,(int) sunPositionY, 30), 0, 0, null);
+        drawCloudG1(g, 420, 35);
+        drawCloudG1(g, 50, 45);
+        drawCloudG2(g, 210, 80);
         drawBackScene(g2, (int) scene1PositionX, 0, Scenes.scenesBack[scene1cureent]);
         drawBackScene(g2, (int) scene2PositionX, 0, Scenes.scenesBack[scene2cureent]);
         drawScene(g2, (int) scene1PositionX, 0, Scenes.scenes[scene1cureent]);
@@ -113,7 +116,6 @@ public class Assignment_2_64050152_64050177 extends JPanel implements Runnable {
         drawCow(g2, (int) cowPositionx, (int)cowPositionY);
         drawPig(g2, (int) pigPositionX, (int) pigPositionY);
         drawSheep(g2, (int) sheepPositionX, (int) sheepPositionY);
-
     }
 
     @Override
@@ -132,14 +134,13 @@ public class Assignment_2_64050152_64050177 extends JPanel implements Runnable {
             systemTime += elapsedTime;
 
             if(systemTime > 1000) {
-                if(sunPositionX <= 300){
-                    sunPositionY -= elapsedTime / 1000.0 * sunVelocityY;
-                }
-                else {
-                    sunPositionY += elapsedTime / 1000.0 * sunVelocityY;
-                }
-
-                if(sunPositionX < 600){
+                if(sunPositionX < 600) {
+                    if(sunPositionX <= 300){
+                        sunPositionY -= elapsedTime / 1000.0 * sunVelocityY;
+                    }
+                    else {
+                        sunPositionY += elapsedTime / 1000.0 * sunVelocityY;
+                    }
                     sunPositionX += elapsedTime / 1000.0 * sunVelocityX;
                 }
             }
@@ -547,6 +548,20 @@ public class Assignment_2_64050152_64050177 extends JPanel implements Runnable {
             }
         }
         g2.drawImage(bf, 0, 0, null);
+    }
+
+    public void drawCloudG1(Graphics g, int x, int y){
+        g.setColor(new Color(177, 220, 254));
+        g.fillRect(x+20, y-10, 60, 20);
+        g.fillRect(x, y, 100, 30);
+        g.fillRect(x+10, y+30, 80, 10);
+    }
+
+    public void drawCloudG2(Graphics g, int x, int y){
+        g.setColor(new Color(177, 220, 254));
+        g.fillRect(x, y, 150, 15);
+        g.fillRect(x+25, y-15, 100, 15);
+        g.fillRect(x+50, y-30, 50, 15);
     }
 
     public BufferedImage midpointCircle(Graphics g, int xc, int yc, int r) {
