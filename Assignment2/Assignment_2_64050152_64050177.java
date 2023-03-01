@@ -10,7 +10,7 @@ public class Assignment_2_64050152_64050177 extends JPanel implements Runnable {
     final static int screenHeight = 600;
 
     final int BIT = 4;
-    final int BOT_OF_BLOCK = 16;
+    final int BIT_OF_BLOCK = 16;
     final int BLOCK_OF_SCENE = 10;
 
     final double STEVE_MAX_RATATION = 60;
@@ -19,8 +19,15 @@ public class Assignment_2_64050152_64050177 extends JPanel implements Runnable {
     final double COW_MAX_RATATION = 40;
     final double CHICKEN_MAX_RATATION = 30;
 
-    final int STEVEHEIGHT = 32 * BIT;
-    final int STEVEWIDTH = 8 * BIT;
+    final int STEVE_HEIGHT = 32 * BIT;
+    final int STEVE_WIDTH = 8 * BIT;
+
+    final int COW_HEIGHT = 28 * BIT;
+
+    final int PIG_HEIGHT = 16 * BIT;
+
+    final int CHICKEN_HEIGHT = 13 * BIT;
+    final int SHEEP_HEIGHT = 20 * BIT;
 
     double steveRotateAngle = 0;
     double steveRotateSpeed = 200;
@@ -43,20 +50,20 @@ public class Assignment_2_64050152_64050177 extends JPanel implements Runnable {
     double scene1PositionX = 0;
     double scene2PositionX = -640;
 
-    double stevePositionx = screenWidth;
-    double stevePositionY = (10 - Scenes.stayBlock[0]) * BOT_OF_BLOCK * BIT - (STEVEHEIGHT);
+    double stevePositionX = screenWidth;
+    double stevePositionY = (10 - Scenes.stayBlock[0]) * BIT_OF_BLOCK * BIT - (STEVE_HEIGHT);
 
-    double cowPositionx = screenWidth;
-    double cowPositionY = (10 - Scenes.stayBlock[1]) * BOT_OF_BLOCK * BIT - (STEVEHEIGHT);
+    double cowPositionx = 50;
+    double cowPositionY = (10 - Scenes.stayBlock[0]) * BIT_OF_BLOCK * BIT - (COW_HEIGHT);
 
-    double chickenPositionx = screenWidth;
-    double chickenPositionY = (10 - Scenes.stayBlock[2]) * BOT_OF_BLOCK * BIT - (STEVEHEIGHT);
+    double chickenPositionX = 150;
+    double chickenPositionY = (10 - Scenes.stayBlock[0]) * BIT_OF_BLOCK * BIT - (CHICKEN_HEIGHT);
 
-    double pigPositionx = screenWidth;
-    double pigPositionY = (10 - Scenes.stayBlock[3]) * BOT_OF_BLOCK * BIT - (STEVEHEIGHT);
+    double pigPositionX = 250;
+    double pigPositionY = (10 - Scenes.stayBlock[0]) * BIT_OF_BLOCK * BIT - (PIG_HEIGHT);
 
-    double sheepPositionPositionx = screenWidth;
-    double sheepPositionPositionY = (10 - Scenes.stayBlock[0]) * BOT_OF_BLOCK * BIT - (STEVEHEIGHT);
+    double sheepPositionX = 350;
+    double sheepPositionY = (10 - Scenes.stayBlock[0]) * BIT_OF_BLOCK * BIT - (SHEEP_HEIGHT);
 
     boolean startScene = false;
 
@@ -89,11 +96,11 @@ public class Assignment_2_64050152_64050177 extends JPanel implements Runnable {
         drawBackScene(g2, (int) scene2PositionX, 0, Scenes.scenesBack[scene2cureent]);
         drawScene(g2, (int) scene1PositionX, 0, Scenes.scenes[scene1cureent]);
         drawScene(g2, (int) scene2PositionX, 0, Scenes.scenes[scene2cureent]);
-        drawCharacter(g2, (int) stevePositionx, (int) stevePositionY);
-        drawchicken(g2, (50), 100);
-        drawCow(g2, 150, 100);
-        drawPig(g2, 200, 100);
-        drawSheep(g2, 250, 100);
+        drawCharacter(g2, (int) stevePositionX, (int) stevePositionY);
+        drawchicken(g2, (int) chickenPositionX, (int) chickenPositionY);
+        drawCow(g2, (int) cowPositionx, (int)cowPositionY);
+        drawPig(g2, (int) pigPositionX, (int) pigPositionY);
+        drawSheep(g2, (int) sheepPositionX, (int) sheepPositionY);
 
     }
 
@@ -113,16 +120,15 @@ public class Assignment_2_64050152_64050177 extends JPanel implements Runnable {
             chickenRotateAngle += chickenRotateSpeed * elapsedTime / 1000.0;
             sheepRotateAngle += sheepRotateSpeed * elapsedTime / 1000.0;
 
-
             scene1PositionX += sceneSpeed * elapsedTime / 1000.0;
             scene2PositionX += sceneSpeed * elapsedTime / 1000.0;
 
-            stevePositionx -= speed * elapsedTime / 1000.0;
+            stevePositionX -= speed * elapsedTime / 1000.0;
 
-            if (stevePositionx <= screenWidth / 2 && startScene == false) {
+            if (stevePositionX <= screenWidth / 2 && startScene == false) {
                 speed = 0;
                 sceneSpeed = 300;
-                stevePositionx = screenWidth / 2;
+                stevePositionX = screenWidth / 2;
                 startScene = true;
             }
 
@@ -166,7 +172,7 @@ public class Assignment_2_64050152_64050177 extends JPanel implements Runnable {
                 chickenRotateSpeed = -chickenRotateSpeed;
             }
 
-            if (scene1PositionX >= stevePositionx && Scenes.stayBlock[scene1cureent] != -1
+            if (scene1PositionX >= stevePositionX && Scenes.stayBlock[scene1cureent] != -1
                     && Scenes.stayBlock[scene1cureent + 1] != -1) {
                 if (Scenes.stayBlock[scene1cureent] < Scenes.stayBlock[scene2cureent]) {
                     jump();
@@ -176,7 +182,7 @@ public class Assignment_2_64050152_64050177 extends JPanel implements Runnable {
                 Scenes.stayBlock[scene1cureent] = -1;
             }
 
-            if (scene2PositionX >= stevePositionx && Scenes.stayBlock[scene2cureent] != -1
+            if (scene2PositionX >= stevePositionX && Scenes.stayBlock[scene2cureent] != -1
                     && Scenes.stayBlock[scene2cureent + 1] != -1) {
                 if (Scenes.stayBlock[scene2cureent] < Scenes.stayBlock[scene1cureent]) {
                     jump();
@@ -206,11 +212,11 @@ public class Assignment_2_64050152_64050177 extends JPanel implements Runnable {
     }
 
     public void jump() {
-        stevePositionY -= BOT_OF_BLOCK * BIT;
+        stevePositionY -= BIT_OF_BLOCK * BIT;
     }
 
     public void down() {
-        stevePositionY += BOT_OF_BLOCK * BIT;
+        stevePositionY += BIT_OF_BLOCK * BIT;
     }
 
     public void drawBlock(Graphics2D g2, int x, int y, String colorCode[][]) {
@@ -485,8 +491,8 @@ public class Assignment_2_64050152_64050177 extends JPanel implements Runnable {
         if (blockCodeColors == null) {
             return;
         }
-        for (int i = 0, dy = y; i < blockCodeColors.length; i++, dy += BOT_OF_BLOCK * BIT) {
-            for (int j = 0, dx = x; j < blockCodeColors[0].length; j++, dx += BOT_OF_BLOCK * BIT) {
+        for (int i = 0, dy = y; i < blockCodeColors.length; i++, dy += BIT_OF_BLOCK * BIT) {
+            for (int j = 0, dx = x; j < blockCodeColors[0].length; j++, dx += BIT_OF_BLOCK * BIT) {
                 if (blockCodeColors[i][j] != null) {
                     drawBlock(g2, dx, dy, blockCodeColors[i][j]);
                 }
@@ -501,11 +507,11 @@ public class Assignment_2_64050152_64050177 extends JPanel implements Runnable {
         BufferedImage bf = new BufferedImage(601, 601, BufferedImage.TYPE_INT_ARGB);
         Graphics2D gDark = bf.createGraphics();
         gDark.setColor(new Color(0, 0, 0, 64));
-        for (int i = 0, dy = y; i < blockCodeColors.length; i++, dy += BOT_OF_BLOCK * BIT) {
-            for (int j = 0, dx = x; j < blockCodeColors[0].length; j++, dx += BOT_OF_BLOCK * BIT) {
+        for (int i = 0, dy = y; i < blockCodeColors.length; i++, dy += BIT_OF_BLOCK * BIT) {
+            for (int j = 0, dx = x; j < blockCodeColors[0].length; j++, dx += BIT_OF_BLOCK * BIT) {
                 if (blockCodeColors[i][j] != null) {
                     drawBlock(g2, dx, dy, blockCodeColors[i][j]);
-                    gDark.fillRect(dx, dy, (BIT * BOT_OF_BLOCK), (BIT * BOT_OF_BLOCK));
+                    gDark.fillRect(dx, dy, (BIT * BIT_OF_BLOCK), (BIT * BIT_OF_BLOCK));
                 }
             }
         }
