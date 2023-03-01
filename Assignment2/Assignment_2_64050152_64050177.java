@@ -9,16 +9,33 @@ public class Assignment_2_64050152_64050177 extends JPanel implements Runnable {
     final static int screenWidth = 600;
     final static int screenHeight = 600;
 
-    final int aBit = 4;
-    final int bitOfBlock = 16;
-    final int BlockOfScene = 10;
-    final double MAX_RATATION = 60;
+    final int BIT = 4;
+    final int BOT_OF_BLOCK = 16;
+    final int BLOCK_OF_SCENE = 10;
 
-    final int steveHeight = 32 * aBit;
-    final int steveWidth = 8 * aBit;
+    final double STEVE_MAX_RATATION = 60;
+    final double PIG_MAX_RATATION = 40;
+    final double SHEEP_MAX_RATATION = 40;
+    final double COW_MAX_RATATION = 40;
+    final double CHICKEN_MAX_RATATION = 30;
 
-    double rotateAngle = 0;
-    double rotateSpeed = 200;
+    final int STEVEHEIGHT = 32 * BIT;
+    final int STEVEWIDTH = 8 * BIT;
+
+    double steveRotateAngle = 0;
+    double steveRotateSpeed = 200;
+
+    double cowRotateAngle = 0;
+    double cowRotateSpeed = 120;
+
+    double chickenRotateAngle = 0;
+    double chickenRotateSpeed = 200;
+
+    double sheepRotateAngle = 0;
+    double sheepRotateSpeed = 200;
+
+    double pigRotateAngle = 0;
+    double pigRotateSpeed = 200;
 
     double speed = 300;
     double sceneSpeed = 0;
@@ -27,11 +44,20 @@ public class Assignment_2_64050152_64050177 extends JPanel implements Runnable {
     double scene2PositionX = -640;
 
     double stevePositionx = screenWidth;
-    double stevePositionY = (10 - Scenes.stayBlock[0]) * bitOfBlock * aBit - (steveHeight);
+    double stevePositionY = (10 - Scenes.stayBlock[0]) * BOT_OF_BLOCK * BIT - (STEVEHEIGHT);
 
-    boolean jump = false;
-    boolean down = false;
-    boolean end = false;
+    double cowPositionx = screenWidth;
+    double cowPositionY = (10 - Scenes.stayBlock[1]) * BOT_OF_BLOCK * BIT - (STEVEHEIGHT);
+
+    double chickenPositionx = screenWidth;
+    double chickenPositionY = (10 - Scenes.stayBlock[2]) * BOT_OF_BLOCK * BIT - (STEVEHEIGHT);
+
+    double pigPositionx = screenWidth;
+    double pigPositionY = (10 - Scenes.stayBlock[3]) * BOT_OF_BLOCK * BIT - (STEVEHEIGHT);
+
+    double sheepPositionPositionx = screenWidth;
+    double sheepPositionPositionY = (10 - Scenes.stayBlock[0]) * BOT_OF_BLOCK * BIT - (STEVEHEIGHT);
+
     boolean startScene = false;
 
     int scene1cureent = 0;
@@ -64,7 +90,7 @@ public class Assignment_2_64050152_64050177 extends JPanel implements Runnable {
         drawScene(g2, (int) scene1PositionX, 0, Scenes.scenes[scene1cureent]);
         drawScene(g2, (int) scene2PositionX, 0, Scenes.scenes[scene2cureent]);
         drawCharacter(g2, (int) stevePositionx, (int) stevePositionY);
-        drawchicken(g2, 50, 100);
+        drawchicken(g2, (50), 100);
         drawCow(g2, 150, 100);
         drawPig(g2, 200, 100);
         drawSheep(g2, 250, 100);
@@ -81,7 +107,12 @@ public class Assignment_2_64050152_64050177 extends JPanel implements Runnable {
             elapsedTime = currentTime - lastTime;
             lastTime = currentTime;
 
-            rotateAngle += rotateSpeed * elapsedTime / 1000.0;
+            steveRotateAngle += steveRotateSpeed * elapsedTime / 1000.0;
+            cowRotateAngle += cowRotateSpeed * elapsedTime / 1000.0;
+            pigRotateAngle += pigRotateSpeed * elapsedTime / 1000.0;
+            chickenRotateAngle += chickenRotateSpeed * elapsedTime / 1000.0;
+            sheepRotateAngle += sheepRotateSpeed * elapsedTime / 1000.0;
+
 
             scene1PositionX += sceneSpeed * elapsedTime / 1000.0;
             scene2PositionX += sceneSpeed * elapsedTime / 1000.0;
@@ -95,12 +126,44 @@ public class Assignment_2_64050152_64050177 extends JPanel implements Runnable {
                 startScene = true;
             }
 
-            if (rotateAngle >= MAX_RATATION) {
-                rotateAngle = MAX_RATATION;
-                rotateSpeed = -rotateSpeed;
-            } else if (rotateAngle <= -MAX_RATATION) {
-                rotateAngle = -MAX_RATATION;
-                rotateSpeed = -rotateSpeed;
+            if (steveRotateAngle >= STEVE_MAX_RATATION) {
+                steveRotateAngle = STEVE_MAX_RATATION;
+                steveRotateSpeed = -steveRotateSpeed;
+            } else if (steveRotateAngle <= -STEVE_MAX_RATATION) {
+                steveRotateAngle = -STEVE_MAX_RATATION;
+                steveRotateSpeed = -steveRotateSpeed;
+            }
+
+            if (cowRotateAngle >= COW_MAX_RATATION) {
+                cowRotateAngle = COW_MAX_RATATION;
+                cowRotateSpeed = -cowRotateSpeed;
+            } else if (cowRotateAngle <= -COW_MAX_RATATION) {
+                cowRotateAngle = -COW_MAX_RATATION;
+                cowRotateSpeed = -cowRotateSpeed;
+            }
+
+            if (pigRotateAngle >= PIG_MAX_RATATION) {
+                pigRotateAngle = PIG_MAX_RATATION;
+                pigRotateSpeed = -pigRotateSpeed;
+            } else if (pigRotateAngle <= -PIG_MAX_RATATION) {
+                pigRotateAngle = -PIG_MAX_RATATION;
+                pigRotateSpeed = -pigRotateSpeed;
+            }
+
+            if (sheepRotateAngle >= SHEEP_MAX_RATATION) {
+                sheepRotateAngle = SHEEP_MAX_RATATION;
+                sheepRotateSpeed = -sheepRotateSpeed;
+            } else if (sheepRotateAngle <= -SHEEP_MAX_RATATION) {
+                sheepRotateAngle = -SHEEP_MAX_RATATION;
+                sheepRotateSpeed = -sheepRotateSpeed;
+            }
+
+            if (chickenRotateAngle >= CHICKEN_MAX_RATATION) {
+                chickenRotateAngle = CHICKEN_MAX_RATATION;
+                chickenRotateSpeed = -chickenRotateSpeed;
+            } else if (chickenRotateAngle <= -CHICKEN_MAX_RATATION) {
+                chickenRotateAngle = -CHICKEN_MAX_RATATION;
+                chickenRotateSpeed = -chickenRotateSpeed;
             }
 
             if (scene1PositionX >= stevePositionx && Scenes.stayBlock[scene1cureent] != -1
@@ -115,7 +178,6 @@ public class Assignment_2_64050152_64050177 extends JPanel implements Runnable {
 
             if (scene2PositionX >= stevePositionx && Scenes.stayBlock[scene2cureent] != -1
                     && Scenes.stayBlock[scene2cureent + 1] != -1) {
-                System.out.println(scene2cureent);
                 if (Scenes.stayBlock[scene2cureent] < Scenes.stayBlock[scene1cureent]) {
                     jump();
                 } else if (Scenes.stayBlock[scene2cureent] > Scenes.stayBlock[scene1cureent]) {
@@ -144,17 +206,17 @@ public class Assignment_2_64050152_64050177 extends JPanel implements Runnable {
     }
 
     public void jump() {
-        stevePositionY -= bitOfBlock * aBit;
+        stevePositionY -= BOT_OF_BLOCK * BIT;
     }
 
     public void down() {
-        stevePositionY += bitOfBlock * aBit;
+        stevePositionY += BOT_OF_BLOCK * BIT;
     }
 
     public void drawBlock(Graphics2D g2, int x, int y, String colorCode[][]) {
 
-        for (int i = 0, dy = y; i < colorCode.length; i++, dy += aBit) {
-            for (int j = 0, dx = x; j < colorCode[0].length; j++, dx += aBit) {
+        for (int i = 0, dy = y; i < colorCode.length; i++, dy += BIT) {
+            for (int j = 0, dx = x; j < colorCode[0].length; j++, dx += BIT) {
                 if (colorCode[i][j] == "#000000") {
                     g2.setColor(new Color(0, 0, 0, 200));
                 } else if (colorCode[i][j] == "#xxxxxx") {
@@ -162,76 +224,76 @@ public class Assignment_2_64050152_64050177 extends JPanel implements Runnable {
                 } else {
                     g2.setColor(Color.decode(colorCode[i][j]));
                 }
-                g2.fillRect(dx, dy, aBit, aBit);
+                g2.fillRect(dx, dy, BIT, BIT);
             }
         }
     }
 
     public void drawSheep(Graphics2D g2, int x, int y) {
-        final double bodyWidth = 16 * aBit;
-        final double bodyHeight = 6 * aBit;
+        final double bodyWidth = 16 * BIT;
+        final double bodyHeight = 6 * BIT;
 
-        final double headWidth = 6 * aBit;
+        final double headWidth = 6 * BIT;
 
-        final double legWidht = 4 * aBit;
+        final double legWidht = 4 * BIT;
 
         double headPositionX = x;
         double headPositionY = y;
 
-        double bodyPositionX = x + headWidth - aBit;
-        double bodyPositionY = headPositionY + (2 * aBit);
+        double bodyPositionX = x + headWidth - BIT;
+        double bodyPositionY = headPositionY + (2 * BIT);
 
         double legPosotionY = bodyPositionY + bodyHeight;
 
-        double fLegPositionX = bodyPositionX + aBit;
-        double bLegPositionX = bodyPositionX + bodyWidth + aBit - legWidht;
+        double fLegPositionX = bodyPositionX + BIT;
+        double bLegPositionX = bodyPositionX + bodyWidth + BIT - legWidht;
 
         double legRotatePositionY = legPosotionY;
 
-        double fLegRotatePositionX = fLegPositionX + aBit + (legWidht / 2);
-        double bLegRotatePositionX = bLegPositionX + aBit + (legWidht / 2);
+        double fLegRotatePositionX = fLegPositionX + BIT + (legWidht / 2);
+        double bLegRotatePositionX = bLegPositionX + BIT + (legWidht / 2);
 
         drawBlock(g2, (int) headPositionX, (int) headPositionY, Block.sheepHead);
 
         // front right leg
-        g2.rotate(Math.toRadians(rotateAngle), fLegRotatePositionX, legRotatePositionY);
+        g2.rotate(Math.toRadians(sheepRotateAngle), fLegRotatePositionX, legRotatePositionY);
         drawBlock(g2, (int) fLegPositionX, (int) legPosotionY, Block.sheepRightLeg);
-        g2.rotate(-Math.toRadians(rotateAngle), fLegRotatePositionX, legRotatePositionY);
+        g2.rotate(-Math.toRadians(sheepRotateAngle), fLegRotatePositionX, legRotatePositionY);
 
         // back right leg
-        g2.rotate(-Math.toRadians(rotateAngle), bLegRotatePositionX, legRotatePositionY);
+        g2.rotate(-Math.toRadians(sheepRotateAngle), bLegRotatePositionX, legRotatePositionY);
         drawBlock(g2, (int) bLegPositionX, (int) legPosotionY, Block.sheepRightLeg);
-        g2.rotate(Math.toRadians(rotateAngle), bLegRotatePositionX, legRotatePositionY);
+        g2.rotate(Math.toRadians(sheepRotateAngle), bLegRotatePositionX, legRotatePositionY);
 
         // front left leg
-        g2.rotate(-Math.toRadians(rotateAngle), fLegRotatePositionX, legRotatePositionY);
+        g2.rotate(-Math.toRadians(sheepRotateAngle), fLegRotatePositionX, legRotatePositionY);
         drawBlock(g2, (int) fLegPositionX, (int) legPosotionY, Block.sheepLeftLeg);
-        g2.rotate(Math.toRadians(rotateAngle), fLegRotatePositionX, legRotatePositionY);
+        g2.rotate(Math.toRadians(sheepRotateAngle), fLegRotatePositionX, legRotatePositionY);
 
         // back left leg
-        g2.rotate(Math.toRadians(rotateAngle), bLegRotatePositionX, legRotatePositionY);
+        g2.rotate(Math.toRadians(sheepRotateAngle), bLegRotatePositionX, legRotatePositionY);
         drawBlock(g2, (int) bLegPositionX, (int) legPosotionY, Block.sheepLeftLeg);
-        g2.rotate(-Math.toRadians(rotateAngle), bLegRotatePositionX, legRotatePositionY);
+        g2.rotate(-Math.toRadians(sheepRotateAngle), bLegRotatePositionX, legRotatePositionY);
 
         drawBlock(g2, (int) bodyPositionX, (int) bodyPositionY, Block.sheepBody);
     }
 
     public void drawCow(Graphics2D g2, int x, int y) {
-        final double bodyWidth = 18 * aBit;
-        final double bodyHeight = 12 * aBit;
+        final double bodyWidth = 18 * BIT;
+        final double bodyHeight = 12 * BIT;
 
-        final double headWidth = 6 * aBit;
+        final double headWidth = 6 * BIT;
 
-        final double legWidht = 4 * aBit;
+        final double legWidht = 4 * BIT;
 
         double headPositionX = x;
-        double headPositionY = y + (2 * aBit);
+        double headPositionY = y + (2 * BIT);
 
-        double hornPositionX = x + (2 * aBit);
+        double hornPositionX = x + (2 * BIT);
         double hornPositionY = y;
 
         double bodyPositionX = x + headWidth;
-        double bodyPositionY = headPositionY + (2 * aBit);
+        double bodyPositionY = headPositionY + (2 * BIT);
 
         double legPosotionY = bodyPositionY + bodyHeight;
 
@@ -246,54 +308,54 @@ public class Assignment_2_64050152_64050177 extends JPanel implements Runnable {
         drawBlock(g2, (int) headPositionX, (int) headPositionY, Block.cowHead);
 
         // front right leg
-        g2.rotate(Math.toRadians(rotateAngle), fLegRotatePositionX, legRotatePositionY);
+        g2.rotate(Math.toRadians(cowRotateAngle), fLegRotatePositionX, legRotatePositionY);
         drawBlock(g2, (int) fLegPositionX, (int) legPosotionY, Block.cowLeg);
-        g2.rotate(-Math.toRadians(rotateAngle), fLegRotatePositionX, legRotatePositionY);
+        g2.rotate(-Math.toRadians(cowRotateAngle), fLegRotatePositionX, legRotatePositionY);
 
         // back right leg
-        g2.rotate(-Math.toRadians(rotateAngle), bLegRotatePositionX, legRotatePositionY);
+        g2.rotate(-Math.toRadians(cowRotateAngle), bLegRotatePositionX, legRotatePositionY);
         drawBlock(g2, (int) bLegPositionX, (int) legPosotionY, Block.cowLeg);
-        g2.rotate(Math.toRadians(rotateAngle), bLegRotatePositionX, legRotatePositionY);
+        g2.rotate(Math.toRadians(cowRotateAngle), bLegRotatePositionX, legRotatePositionY);
 
         // front left leg
-        g2.rotate(-Math.toRadians(rotateAngle), fLegRotatePositionX, legRotatePositionY);
+        g2.rotate(-Math.toRadians(cowRotateAngle), fLegRotatePositionX, legRotatePositionY);
         drawBlock(g2, (int) fLegPositionX, (int) legPosotionY, Block.cowLeg);
-        g2.rotate(Math.toRadians(rotateAngle), fLegRotatePositionX, legRotatePositionY);
+        g2.rotate(Math.toRadians(cowRotateAngle), fLegRotatePositionX, legRotatePositionY);
 
         // back left leg
-        g2.rotate(Math.toRadians(rotateAngle), bLegRotatePositionX, legRotatePositionY);
+        g2.rotate(Math.toRadians(cowRotateAngle), bLegRotatePositionX, legRotatePositionY);
         drawBlock(g2, (int) bLegPositionX, (int) legPosotionY, Block.cowLeg);
-        g2.rotate(-Math.toRadians(rotateAngle), bLegRotatePositionX, legRotatePositionY);
+        g2.rotate(-Math.toRadians(cowRotateAngle), bLegRotatePositionX, legRotatePositionY);
 
         drawBlock(g2, (int) bodyPositionX, (int) bodyPositionY, Block.cowBody);
         drawBlock(g2, (int) hornPositionX, (int) hornPositionY, Block.cowHorn);
     }
 
     public void drawchicken(Graphics2D g2, int x, int y) {
-        final double bodyHeight = 5 * aBit;
+        final double bodyHeight = 5 * BIT;
 
-        final double headWidth = 3 * aBit;
-        final double headHeight = 6 * aBit;
+        final double headWidth = 3 * BIT;
+        final double headHeight = 6 * BIT;
 
-        final double mouthWidth = 2 * aBit;
-        final double mouthHeight = 2 * aBit;
+        final double mouthWidth = 2 * BIT;
+        final double mouthHeight = 2 * BIT;
 
-        final double legWidth = 3 * aBit;
+        final double legWidth = 3 * BIT;
 
         double headPositionX = x + mouthWidth;
         double headPositionY = y;
 
         double mouthPositionX = x;
-        double mouthPositionY = y + (2 * aBit);
+        double mouthPositionY = y + (2 * BIT);
 
-        double combPositionX = mouthPositionX + aBit;
+        double combPositionX = mouthPositionX + BIT;
         double combPositionY = mouthPositionY + mouthHeight;
 
-        double bodyPositionX = headPositionX + headWidth - aBit;
-        double bodyPositionY = headPositionY + headHeight - (2 * aBit);
+        double bodyPositionX = headPositionX + headWidth - BIT;
+        double bodyPositionY = headPositionY + headHeight - (2 * BIT);
 
-        double legPositionX = bodyPositionX + (3 * aBit);
-        double legPositionY = bodyPositionY + bodyHeight - aBit;
+        double legPositionX = bodyPositionX + (3 * BIT);
+        double legPositionY = bodyPositionY + bodyHeight - BIT;
 
         double legRotatePositionX = legPositionX + legWidth;
         double legRotatePositionY = legPositionY;
@@ -303,34 +365,34 @@ public class Assignment_2_64050152_64050177 extends JPanel implements Runnable {
         drawBlock(g2, (int) combPositionX, (int) combPositionY, Block.chickenComb);
 
         // right leg
-        g2.rotate(Math.toRadians(rotateAngle), legRotatePositionX, legRotatePositionY);
+        g2.rotate(Math.toRadians(chickenRotateAngle), legRotatePositionX, legRotatePositionY);
         drawBlock(g2, (int) legPositionX, (int) legPositionY, Block.chickenLeg);
-        g2.rotate(-Math.toRadians(rotateAngle), legRotatePositionX, legRotatePositionY);
+        g2.rotate(-Math.toRadians(chickenRotateAngle), legRotatePositionX, legRotatePositionY);
 
         // left leg
-        g2.rotate(-Math.toRadians(rotateAngle), legRotatePositionX, legRotatePositionY);
+        g2.rotate(-Math.toRadians(chickenRotateAngle), legRotatePositionX, legRotatePositionY);
         drawBlock(g2, (int) legPositionX, (int) legPositionY, Block.chickenLeg);
-        g2.rotate(Math.toRadians(rotateAngle), legRotatePositionX, legRotatePositionY);
+        g2.rotate(Math.toRadians(chickenRotateAngle), legRotatePositionX, legRotatePositionY);
 
         drawBlock(g2, (int) bodyPositionX, (int) bodyPositionY, Block.chickenBody);
 
     }
 
     public void drawPig(Graphics2D g2, int x, int y) {
-        final double bodyWidth = 16 * aBit;
-        final double bodyHeight = 8 * aBit;
+        final double bodyWidth = 16 * BIT;
+        final double bodyHeight = 8 * BIT;
 
-        final double headSide = 8 * aBit;
-        final double legWidth = 4 * aBit;
+        final double headSide = 8 * BIT;
+        final double legWidth = 4 * BIT;
 
-        double headPositionX = x + aBit;
+        double headPositionX = x + BIT;
         double headPositionY = y;
 
         double nosePositionX = x;
-        double nosePositionY = y + (4 * aBit);
+        double nosePositionY = y + (4 * BIT);
 
-        double bodyPositionX = headPositionX + headSide - (2 * aBit);
-        double bodyPositionY = headPositionY + (2 * aBit);
+        double bodyPositionX = headPositionX + headSide - (2 * BIT);
+        double bodyPositionY = headPositionY + (2 * BIT);
 
         double fLegPositionX = bodyPositionX;
         double fLegPositionY = bodyPositionY + bodyHeight;
@@ -348,34 +410,34 @@ public class Assignment_2_64050152_64050177 extends JPanel implements Runnable {
         drawBlock(g2, (int) nosePositionX, (int) nosePositionY, Block.pigNose);
 
         // right front leg
-        g2.rotate(Math.toRadians(rotateAngle), fLegRotatePositionX, fLegRotatePositionY);
+        g2.rotate(Math.toRadians(pigRotateAngle), fLegRotatePositionX, fLegRotatePositionY);
         drawBlock(g2, (int) fLegPositionX, (int) fLegPositionY, Block.pigLeg);
-        g2.rotate(-Math.toRadians(rotateAngle), fLegRotatePositionX, fLegRotatePositionY);
+        g2.rotate(-Math.toRadians(pigRotateAngle), fLegRotatePositionX, fLegRotatePositionY);
 
         // right back leg
-        g2.rotate(Math.toRadians(rotateAngle), bLegRotatePositionX, bLegRotatePositionY);
+        g2.rotate(Math.toRadians(pigRotateAngle), bLegRotatePositionX, bLegRotatePositionY);
         drawBlock(g2, (int) bLegPositionX, (int) bLegPositionY, Block.pigLeg);
-        g2.rotate(-Math.toRadians(rotateAngle), bLegRotatePositionX, bLegRotatePositionY);
+        g2.rotate(-Math.toRadians(pigRotateAngle), bLegRotatePositionX, bLegRotatePositionY);
 
         drawBlock(g2, (int) bodyPositionX, (int) bodyPositionY, Block.pigBody);
 
         // left front leg
-        g2.rotate(-Math.toRadians(rotateAngle), fLegRotatePositionX, fLegRotatePositionY);
+        g2.rotate(-Math.toRadians(pigRotateAngle), fLegRotatePositionX, fLegRotatePositionY);
         drawBlock(g2, (int) fLegPositionX, (int) fLegPositionY, Block.pigLeg);
-        g2.rotate(Math.toRadians(rotateAngle), fLegRotatePositionX, fLegRotatePositionY);
+        g2.rotate(Math.toRadians(pigRotateAngle), fLegRotatePositionX, fLegRotatePositionY);
 
         // right front leg
-        g2.rotate(-Math.toRadians(rotateAngle), bLegRotatePositionX, bLegRotatePositionY);
+        g2.rotate(-Math.toRadians(pigRotateAngle), bLegRotatePositionX, bLegRotatePositionY);
         drawBlock(g2, (int) bLegPositionX, (int) bLegPositionY, Block.pigLeg);
-        g2.rotate(Math.toRadians(rotateAngle), bLegRotatePositionX, bLegRotatePositionY);
+        g2.rotate(Math.toRadians(pigRotateAngle), bLegRotatePositionX, bLegRotatePositionY);
     }
 
     public void drawCharacter(Graphics2D g2, int x, int y) {
 
-        final double bodyWidth = 4 * aBit;
-        final double bodyHeight = 12 * aBit;
+        final double bodyWidth = 4 * BIT;
+        final double bodyHeight = 12 * BIT;
 
-        final double headSide = 8 * aBit;
+        final double headSide = 8 * BIT;
 
         double headPositionY = y;
         double bodyPositionY = y + headSide;
@@ -393,14 +455,14 @@ public class Assignment_2_64050152_64050177 extends JPanel implements Runnable {
         double legRotatePositionY = y + headSide + bodyHeight;
 
         // right arm
-        g2.rotate(Math.toRadians(rotateAngle), rotatePositionX, armRotatePositionY);
+        g2.rotate(Math.toRadians(steveRotateAngle), rotatePositionX, armRotatePositionY);
         drawBlock(g2, (int) armPositionX, (int) armPositionY, Block.rightArmColorCode);
-        g2.rotate(-Math.toRadians(rotateAngle), rotatePositionX, armRotatePositionY);
+        g2.rotate(-Math.toRadians(steveRotateAngle), rotatePositionX, armRotatePositionY);
 
         // right leg
-        g2.rotate(-Math.toRadians(rotateAngle), rotatePositionX, legRotatePositionY);
+        g2.rotate(-Math.toRadians(steveRotateAngle), rotatePositionX, legRotatePositionY);
         drawBlock(g2, (int) legPositionX, (int) legPositionY, Block.rightLegColorCode);
-        g2.rotate(Math.toRadians(rotateAngle), rotatePositionX, legRotatePositionY);
+        g2.rotate(Math.toRadians(steveRotateAngle), rotatePositionX, legRotatePositionY);
 
         // body
         drawBlock(g2, (int) bodyPositionX, (int) bodyPositionY, Block.bodyColorCode);
@@ -409,22 +471,22 @@ public class Assignment_2_64050152_64050177 extends JPanel implements Runnable {
         drawBlock(g2, (int) headPositionX, (int) headPositionY, Block.headColorCode);
 
         // left arm
-        g2.rotate(-Math.toRadians(rotateAngle), rotatePositionX, armPositionY);
+        g2.rotate(-Math.toRadians(steveRotateAngle), rotatePositionX, armPositionY);
         drawBlock(g2, (int) armPositionX, (int) armPositionY, Block.leftArmColorCode);
-        g2.rotate(Math.toRadians(rotateAngle), rotatePositionX, armPositionY);
+        g2.rotate(Math.toRadians(steveRotateAngle), rotatePositionX, armPositionY);
 
         // left leg
-        g2.rotate(Math.toRadians(rotateAngle), rotatePositionX, legPositionY);
+        g2.rotate(Math.toRadians(steveRotateAngle), rotatePositionX, legPositionY);
         drawBlock(g2, (int) legPositionX, (int) legPositionY, Block.leftLegColorCode);
-        g2.rotate(-Math.toRadians(rotateAngle), rotatePositionX, legPositionY);
+        g2.rotate(-Math.toRadians(steveRotateAngle), rotatePositionX, legPositionY);
     }
 
     public void drawScene(Graphics2D g2, int x, int y, String[][][][] blockCodeColors) {
         if (blockCodeColors == null) {
             return;
         }
-        for (int i = 0, dy = y; i < blockCodeColors.length; i++, dy += bitOfBlock * aBit) {
-            for (int j = 0, dx = x; j < blockCodeColors[0].length; j++, dx += bitOfBlock * aBit) {
+        for (int i = 0, dy = y; i < blockCodeColors.length; i++, dy += BOT_OF_BLOCK * BIT) {
+            for (int j = 0, dx = x; j < blockCodeColors[0].length; j++, dx += BOT_OF_BLOCK * BIT) {
                 if (blockCodeColors[i][j] != null) {
                     drawBlock(g2, dx, dy, blockCodeColors[i][j]);
                 }
@@ -439,11 +501,11 @@ public class Assignment_2_64050152_64050177 extends JPanel implements Runnable {
         BufferedImage bf = new BufferedImage(601, 601, BufferedImage.TYPE_INT_ARGB);
         Graphics2D gDark = bf.createGraphics();
         gDark.setColor(new Color(0, 0, 0, 64));
-        for (int i = 0, dy = y; i < blockCodeColors.length; i++, dy += bitOfBlock * aBit) {
-            for (int j = 0, dx = x; j < blockCodeColors[0].length; j++, dx += bitOfBlock * aBit) {
+        for (int i = 0, dy = y; i < blockCodeColors.length; i++, dy += BOT_OF_BLOCK * BIT) {
+            for (int j = 0, dx = x; j < blockCodeColors[0].length; j++, dx += BOT_OF_BLOCK * BIT) {
                 if (blockCodeColors[i][j] != null) {
                     drawBlock(g2, dx, dy, blockCodeColors[i][j]);
-                    gDark.fillRect(dx, dy, (aBit * bitOfBlock), (aBit * bitOfBlock));
+                    gDark.fillRect(dx, dy, (BIT * BOT_OF_BLOCK), (BIT * BOT_OF_BLOCK));
                 }
             }
         }
