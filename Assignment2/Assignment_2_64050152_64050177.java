@@ -253,29 +253,29 @@ public class Assignment_2_64050152_64050177 extends JPanel implements Runnable {
         double fLegRotatePositionX = fLegPositionX + BIT + (legWidht / 2);
         double bLegRotatePositionX = bLegPositionX + BIT + (legWidht / 2);
 
-        drawBlock(g2, (int) headPositionX, (int) headPositionY, Block.sheepHead);
+        drawBlock(g2, (int) headPositionX, (int) headPositionY, Mob.sheepHead);
 
         // front right leg
         g2.rotate(Math.toRadians(sheepRotateAngle), fLegRotatePositionX, legRotatePositionY);
-        drawBlock(g2, (int) fLegPositionX, (int) legPosotionY, Block.sheepRightLeg);
+        drawBlock(g2, (int) fLegPositionX, (int) legPosotionY, Mob.sheepRightLeg);
         g2.rotate(-Math.toRadians(sheepRotateAngle), fLegRotatePositionX, legRotatePositionY);
 
         // back right leg
         g2.rotate(-Math.toRadians(sheepRotateAngle), bLegRotatePositionX, legRotatePositionY);
-        drawBlock(g2, (int) bLegPositionX, (int) legPosotionY, Block.sheepRightLeg);
+        drawBlock(g2, (int) bLegPositionX, (int) legPosotionY, Mob.sheepRightLeg);
         g2.rotate(Math.toRadians(sheepRotateAngle), bLegRotatePositionX, legRotatePositionY);
 
         // front left leg
         g2.rotate(-Math.toRadians(sheepRotateAngle), fLegRotatePositionX, legRotatePositionY);
-        drawBlock(g2, (int) fLegPositionX, (int) legPosotionY, Block.sheepLeftLeg);
+        drawBlock(g2, (int) fLegPositionX, (int) legPosotionY, Mob.sheepLeftLeg);
         g2.rotate(Math.toRadians(sheepRotateAngle), fLegRotatePositionX, legRotatePositionY);
 
         // back left leg
         g2.rotate(Math.toRadians(sheepRotateAngle), bLegRotatePositionX, legRotatePositionY);
-        drawBlock(g2, (int) bLegPositionX, (int) legPosotionY, Block.sheepLeftLeg);
+        drawBlock(g2, (int) bLegPositionX, (int) legPosotionY, Mob.sheepLeftLeg);
         g2.rotate(-Math.toRadians(sheepRotateAngle), bLegRotatePositionX, legRotatePositionY);
 
-        drawBlock(g2, (int) bodyPositionX, (int) bodyPositionY, Block.sheepBody);
+        drawBlock(g2, (int) bodyPositionX, (int) bodyPositionY, Mob.sheepBody);
     }
 
     public void drawCow(Graphics2D g2, int x, int y) {
@@ -305,30 +305,30 @@ public class Assignment_2_64050152_64050177 extends JPanel implements Runnable {
         double fLegRotatePositionX = fLegPositionX + (legWidht / 2);
         double bLegRotatePositionX = bLegPositionX + (legWidht / 2);
 
-        drawBlock(g2, (int) headPositionX, (int) headPositionY, Block.cowHead);
+        drawBlock(g2, (int) headPositionX, (int) headPositionY, Mob.cowHead);
 
         // front right leg
         g2.rotate(Math.toRadians(cowRotateAngle), fLegRotatePositionX, legRotatePositionY);
-        drawBlock(g2, (int) fLegPositionX, (int) legPosotionY, Block.cowLeg);
+        drawBlock(g2, (int) fLegPositionX, (int) legPosotionY, Mob.cowLeg);
         g2.rotate(-Math.toRadians(cowRotateAngle), fLegRotatePositionX, legRotatePositionY);
 
         // back right leg
         g2.rotate(-Math.toRadians(cowRotateAngle), bLegRotatePositionX, legRotatePositionY);
-        drawBlock(g2, (int) bLegPositionX, (int) legPosotionY, Block.cowLeg);
+        drawBlock(g2, (int) bLegPositionX, (int) legPosotionY, Mob.cowLeg);
         g2.rotate(Math.toRadians(cowRotateAngle), bLegRotatePositionX, legRotatePositionY);
 
         // front left leg
         g2.rotate(-Math.toRadians(cowRotateAngle), fLegRotatePositionX, legRotatePositionY);
-        drawBlock(g2, (int) fLegPositionX, (int) legPosotionY, Block.cowLeg);
+        drawBlock(g2, (int) fLegPositionX, (int) legPosotionY, Mob.cowLeg);
         g2.rotate(Math.toRadians(cowRotateAngle), fLegRotatePositionX, legRotatePositionY);
 
         // back left leg
         g2.rotate(Math.toRadians(cowRotateAngle), bLegRotatePositionX, legRotatePositionY);
-        drawBlock(g2, (int) bLegPositionX, (int) legPosotionY, Block.cowLeg);
+        drawBlock(g2, (int) bLegPositionX, (int) legPosotionY, Mob.cowLeg);
         g2.rotate(-Math.toRadians(cowRotateAngle), bLegRotatePositionX, legRotatePositionY);
 
-        drawBlock(g2, (int) bodyPositionX, (int) bodyPositionY, Block.cowBody);
-        drawBlock(g2, (int) hornPositionX, (int) hornPositionY, Block.cowHorn);
+        drawBlock(g2, (int) bodyPositionX, (int) bodyPositionY, Mob.cowBody);
+        drawBlock(g2, (int) hornPositionX, (int) hornPositionY, Mob.cowHorn);
     }
 
     public void drawchicken(Graphics2D g2, int x, int y) {
@@ -360,21 +360,21 @@ public class Assignment_2_64050152_64050177 extends JPanel implements Runnable {
         double legRotatePositionX = legPositionX + legWidth;
         double legRotatePositionY = legPositionY;
 
-        drawBlock(g2, (int) headPositionX, (int) headPositionY, Block.chickenHead);
-        drawBlock(g2, (int) mouthPositionX, (int) mouthPositionY, Block.chickenMouth);
-        drawBlock(g2, (int) combPositionX, (int) combPositionY, Block.chickenComb);
+        drawBlock(g2, (int) headPositionX, (int) headPositionY, Mob.chickenHead);
+        drawBlock(g2, (int) mouthPositionX, (int) mouthPositionY, Mob.chickenMouth);
+        drawBlock(g2, (int) combPositionX, (int) combPositionY, Mob.chickenComb);
 
         // right leg
         g2.rotate(Math.toRadians(chickenRotateAngle), legRotatePositionX, legRotatePositionY);
-        drawBlock(g2, (int) legPositionX, (int) legPositionY, Block.chickenLeg);
+        drawBlock(g2, (int) legPositionX, (int) legPositionY, Mob.chickenLeg);
         g2.rotate(-Math.toRadians(chickenRotateAngle), legRotatePositionX, legRotatePositionY);
 
         // left leg
         g2.rotate(-Math.toRadians(chickenRotateAngle), legRotatePositionX, legRotatePositionY);
-        drawBlock(g2, (int) legPositionX, (int) legPositionY, Block.chickenLeg);
+        drawBlock(g2, (int) legPositionX, (int) legPositionY, Mob.chickenLeg);
         g2.rotate(Math.toRadians(chickenRotateAngle), legRotatePositionX, legRotatePositionY);
 
-        drawBlock(g2, (int) bodyPositionX, (int) bodyPositionY, Block.chickenBody);
+        drawBlock(g2, (int) bodyPositionX, (int) bodyPositionY, Mob.chickenBody);
 
     }
 
@@ -406,29 +406,29 @@ public class Assignment_2_64050152_64050177 extends JPanel implements Runnable {
         double bLegRotatePositionX = bLegPositionX + (legWidth / 2);
         double bLegRotatePositionY = bLegPositionY;
 
-        drawBlock(g2, (int) headPositionX, (int) headPositionY, Block.pigHead);
-        drawBlock(g2, (int) nosePositionX, (int) nosePositionY, Block.pigNose);
+        drawBlock(g2, (int) headPositionX, (int) headPositionY, Mob.pigHead);
+        drawBlock(g2, (int) nosePositionX, (int) nosePositionY, Mob.pigNose);
 
         // right front leg
         g2.rotate(Math.toRadians(pigRotateAngle), fLegRotatePositionX, fLegRotatePositionY);
-        drawBlock(g2, (int) fLegPositionX, (int) fLegPositionY, Block.pigLeg);
+        drawBlock(g2, (int) fLegPositionX, (int) fLegPositionY, Mob.pigLeg);
         g2.rotate(-Math.toRadians(pigRotateAngle), fLegRotatePositionX, fLegRotatePositionY);
 
         // right back leg
         g2.rotate(Math.toRadians(pigRotateAngle), bLegRotatePositionX, bLegRotatePositionY);
-        drawBlock(g2, (int) bLegPositionX, (int) bLegPositionY, Block.pigLeg);
+        drawBlock(g2, (int) bLegPositionX, (int) bLegPositionY, Mob.pigLeg);
         g2.rotate(-Math.toRadians(pigRotateAngle), bLegRotatePositionX, bLegRotatePositionY);
 
-        drawBlock(g2, (int) bodyPositionX, (int) bodyPositionY, Block.pigBody);
+        drawBlock(g2, (int) bodyPositionX, (int) bodyPositionY, Mob.pigBody);
 
         // left front leg
         g2.rotate(-Math.toRadians(pigRotateAngle), fLegRotatePositionX, fLegRotatePositionY);
-        drawBlock(g2, (int) fLegPositionX, (int) fLegPositionY, Block.pigLeg);
+        drawBlock(g2, (int) fLegPositionX, (int) fLegPositionY, Mob.pigLeg);
         g2.rotate(Math.toRadians(pigRotateAngle), fLegRotatePositionX, fLegRotatePositionY);
 
         // right front leg
         g2.rotate(-Math.toRadians(pigRotateAngle), bLegRotatePositionX, bLegRotatePositionY);
-        drawBlock(g2, (int) bLegPositionX, (int) bLegPositionY, Block.pigLeg);
+        drawBlock(g2, (int) bLegPositionX, (int) bLegPositionY, Mob.pigLeg);
         g2.rotate(Math.toRadians(pigRotateAngle), bLegRotatePositionX, bLegRotatePositionY);
     }
 
@@ -456,28 +456,28 @@ public class Assignment_2_64050152_64050177 extends JPanel implements Runnable {
 
         // right arm
         g2.rotate(Math.toRadians(steveRotateAngle), rotatePositionX, armRotatePositionY);
-        drawBlock(g2, (int) armPositionX, (int) armPositionY, Block.rightArmColorCode);
+        drawBlock(g2, (int) armPositionX, (int) armPositionY, Mob.rightArmColorCode);
         g2.rotate(-Math.toRadians(steveRotateAngle), rotatePositionX, armRotatePositionY);
 
         // right leg
         g2.rotate(-Math.toRadians(steveRotateAngle), rotatePositionX, legRotatePositionY);
-        drawBlock(g2, (int) legPositionX, (int) legPositionY, Block.rightLegColorCode);
+        drawBlock(g2, (int) legPositionX, (int) legPositionY, Mob.rightLegColorCode);
         g2.rotate(Math.toRadians(steveRotateAngle), rotatePositionX, legRotatePositionY);
 
         // body
-        drawBlock(g2, (int) bodyPositionX, (int) bodyPositionY, Block.bodyColorCode);
+        drawBlock(g2, (int) bodyPositionX, (int) bodyPositionY, Mob.bodyColorCode);
 
         // head
-        drawBlock(g2, (int) headPositionX, (int) headPositionY, Block.headColorCode);
+        drawBlock(g2, (int) headPositionX, (int) headPositionY, Mob.headColorCode);
 
         // left arm
         g2.rotate(-Math.toRadians(steveRotateAngle), rotatePositionX, armPositionY);
-        drawBlock(g2, (int) armPositionX, (int) armPositionY, Block.leftArmColorCode);
+        drawBlock(g2, (int) armPositionX, (int) armPositionY, Mob.leftArmColorCode);
         g2.rotate(Math.toRadians(steveRotateAngle), rotatePositionX, armPositionY);
 
         // left leg
         g2.rotate(Math.toRadians(steveRotateAngle), rotatePositionX, legPositionY);
-        drawBlock(g2, (int) legPositionX, (int) legPositionY, Block.leftLegColorCode);
+        drawBlock(g2, (int) legPositionX, (int) legPositionY, Mob.leftLegColorCode);
         g2.rotate(-Math.toRadians(steveRotateAngle), rotatePositionX, legPositionY);
     }
 
