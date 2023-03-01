@@ -1,6 +1,8 @@
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.image.BufferedImage;
+import java.util.LinkedList;
+import java.util.Queue;
 
 import java.awt.*;
 
@@ -28,6 +30,8 @@ public class Assignment_2_64050152_64050177 extends JPanel implements Runnable {
 
     final int CHICKEN_HEIGHT = 13 * BIT;
     final int SHEEP_HEIGHT = 20 * BIT;
+
+    double systemTime = 0;
 
     double steveRotateAngle = 0;
     double steveRotateSpeed = 200;
@@ -91,6 +95,13 @@ public class Assignment_2_64050152_64050177 extends JPanel implements Runnable {
     double sheepPositionX = -400;
     double sheepPositionY = (10 - Scenes.stayBlock[5]) * BIT_OF_BLOCK * BIT - (SHEEP_HEIGHT);
 
+    double sunPositionX = 50;
+    double sunPositionY = 80;
+    double sunVelocityX = 0;
+    double sunVelocityY = 0;
+    double sunSpeed = 20;
+    double sunAngle = 10;
+
     boolean startScene = false;
     boolean steveMove = false;
 
@@ -119,10 +130,14 @@ public class Assignment_2_64050152_64050177 extends JPanel implements Runnable {
         g2.setColor(Color.decode("#6caaff"));
         g2.fillRect(0, 0, 600, 600);
 
-        drawBackScene(g2, (int) scene1PositionX, 0, Scenes.scenesBack[scene1current]);
-        drawBackScene(g2, (int) scene2PositionX, 0, Scenes.scenesBack[scene2current]);
-        drawScene(g2, (int) scene1PositionX, 0, Scenes.scenes[scene1current]);
-        drawScene(g2, (int) scene2PositionX, 0, Scenes.scenes[scene2current]);
+        g.drawImage(midpointCircle(g,(int) sunPositionX,(int) sunPositionY, 30), 0, 0, null);
+        drawCloudG1(g, 420, 35);
+        drawCloudG1(g, 50, 45);
+        drawCloudG2(g, 210, 80);
+        drawBackScene(g2, (int) scene1PositionX, 0, Scenes.scenesBack[scene1cureent]);
+        drawBackScene(g2, (int) scene2PositionX, 0, Scenes.scenesBack[scene2cureent]);
+        drawScene(g2, (int) scene1PositionX, 0, Scenes.scenes[scene1cureent]);
+        drawScene(g2, (int) scene2PositionX, 0, Scenes.scenes[scene2cureent]);
         drawCharacter(g2, (int) stevePositionX, (int) stevePositionY);
         drawBee(g2, (int) beePositionX, (int) beePositionY);
         drawchicken(g2, (int) chickenPositionX, (int) chickenPositionY);
@@ -131,7 +146,6 @@ public class Assignment_2_64050152_64050177 extends JPanel implements Runnable {
         drawSheep(g2, (int) sheepPositionX, (int) sheepPositionY);
         drawScene(g2, (int) scene1PositionX, 0, Scenes.scenesFront[scene1current]);
         drawScene(g2, (int) scene2PositionX, 0, Scenes.scenesFront[scene2current]);
-
     }
 
     @Override
@@ -139,10 +153,28 @@ public class Assignment_2_64050152_64050177 extends JPanel implements Runnable {
 
         double lastTime = System.currentTimeMillis();
         double currentTime, elapsedTime;
+
+        sunVelocityX = sunSpeed * Math.cos(Math.toRadians(sunAngle));
+        sunVelocityY = (sunSpeed-5) * Math.sin(Math.toRadians(sunAngle));
+
         while (true) {
             currentTime = System.currentTimeMillis();
             elapsedTime = currentTime - lastTime;
             lastTime = currentTime;
+            systemTime += elapsedTime;
+
+            if(systemTime > 1000) {
+                if(sunPositionX < 600) {
+                    if(sunPositionX <= 300){
+                        sunPositionY -= elapsedTime / 1000.0 * sunVelocityY;
+                    }
+                    else {
+                        sunPositionY += elapsedTime / 1000.0 * sunVelocityY;
+                    }
+                    sunPositionX += elapsedTime / 1000.0 * sunVelocityX;
+                }
+            }
+            
 
             steveRotateAngle += steveRotateSpeed * elapsedTime / 1000.0;
             headRotate += headRotateSpeed * elapsedTime / 1000.0;
@@ -720,5 +752,97 @@ public class Assignment_2_64050152_64050177 extends JPanel implements Runnable {
             }
         }
         g2.drawImage(bf, 0, 0, null);
+    }
+
+    public void drawCloudG1(Graphics g, int x, int y){
+        g.setColor(new Color(177, 220, 254));
+        g.fillRect(x+20, y-10, 60, 20);
+        g.fillRect(x, y, 100, 30);
+        g.fillRect(x+10, y+30, 80, 10);
+    }
+
+    public void drawCloudG2(Graphics g, int x, int y){
+        g.setColor(new Color(177, 220, 254));
+        g.fillRect(x, y, 150, 15);
+        g.fillRect(x+25, y-15, 100, 15);
+        g.fillRect(x+50, y-30, 50, 15);
+    }
+
+    public BufferedImage midpointCircle(Graphics g, int xc, int yc, int r) {
+
+        BufferedImage circleImage = new BufferedImage(601, 601, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D gCircle = circleImage.createGraphics();
+
+        gCircle.setColor(Color.YELLOW);
+
+        int x = 0;
+        int y = r;
+        int d = 1 - r;
+        int dx = 2*x;
+        int dy = 2*y;
+
+        while(x <= y) {
+            plot(gCircle, x + xc, y + yc, 2);
+            plot(gCircle, -x + xc, y + yc, 2);
+            plot(gCircle, x + xc, -y + yc, 2);
+            plot(gCircle, -x + xc, -y + yc, 2);
+            plot(gCircle, y + xc, x + yc, 2);
+            plot(gCircle, -y + xc, x + yc, 2);
+            plot(gCircle, y + xc, -x + yc, 2);
+            plot(gCircle, -y + xc, -x + yc, 2);
+
+            x++;
+            dx += 2;
+            d += dx + 1;
+
+            if(d >= 0) {
+                y--;
+                dy -= 2;
+                d -= dy;
+            }
+        }
+
+        floodfill(circleImage, xc, yc, new Color(0, 0, 0, 0), Color.YELLOW);
+        return circleImage;
+    }
+
+    private void plot(Graphics g, int x, int y,int size) {
+        g.fillRect(x, y, size, size);
+    }
+
+    // fill color in shape
+    public void floodfill(BufferedImage m, int x, int y, Color targetColor, Color replacementColor) {
+        Graphics2D g2 = m.createGraphics();
+        Queue<Point> q = new LinkedList<>();
+
+        if (m.getRGB(x, y) == targetColor.getRGB()) {
+            g2.setColor(replacementColor);
+            plot(g2, x, y, 1);
+            q.add(new Point(x, y));
+        }
+
+        while (!q.isEmpty()) {
+            Point p = q.poll();
+            // s
+            if (p.y < 600 && m.getRGB(p.x, p.y + 1) == targetColor.getRGB()) {
+                plot(g2, p.x, p.y + 1, 1);
+                q.add(new Point(p.x, p.y + 1));
+            }
+            // n
+            if (p.y > 0 && m.getRGB(p.x, p.y - 1) == targetColor.getRGB()) {
+                plot(g2, p.x, p.y - 1, 1);
+                q.add(new Point(p.x, p.y - 1));
+            }
+            // e
+            if (p.x < 600 && m.getRGB(p.x + 1, p.y) == targetColor.getRGB()) {
+                plot(g2, p.x + 1, p.y, 1);
+                q.add(new Point(p.x + 1, p.y));
+            }
+            // w
+            if (p.x > 0 && m.getRGB(p.x - 1, p.y) == targetColor.getRGB()) {
+                plot(g2, p.x - 1, p.y, 1);
+                q.add(new Point(p.x - 1, p.y));
+            }
+        }
     }
 }
