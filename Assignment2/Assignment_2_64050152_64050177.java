@@ -54,20 +54,46 @@ public class Assignment_2_64050152_64050177 extends JPanel implements Runnable {
     double scene1PositionX = 0;
     double scene2PositionX = -640;
 
+    double headRotateSpeed = 100;
+    final double HEAD_MAX_RATATE = 20;
+
     double stevePositionX = screenWidth;
     double stevePositionY = (10 - Scenes.stayBlock[0]) * BIT_OF_BLOCK * BIT - (STEVE_HEIGHT);
+    double headRotate = 0;
 
-    double cowPositionx = 50;
-    double cowPositionY = (10 - Scenes.stayBlock[0]) * BIT_OF_BLOCK * BIT - (COW_HEIGHT);
+    boolean beeMove = false;
+    double beePositionX = stevePositionX + (1.5 * BIT_OF_BLOCK * BIT);
+    double beeCenterPositionY = stevePositionY - (BIT_OF_BLOCK * BIT);
+    double beePositionY = stevePositionY - (BIT_OF_BLOCK * BIT);
+    double beeUpDownSpeed = 100;
 
-    double chickenPositionX = 150;
-    double chickenPositionY = (10 - Scenes.stayBlock[0]) * BIT_OF_BLOCK * BIT - (CHICKEN_HEIGHT);
+    boolean cowMove = false;
+    int cowStartWalk = 350;
+    int cowStartScene = 2;
+    boolean cowStart = false;
+    double cowPositionx = -200;
+    double cowPositionY = (10 - Scenes.stayBlock[2]) * BIT_OF_BLOCK * BIT - (COW_HEIGHT);
 
-    double pigPositionX = 250;
-    double pigPositionY = (10 - Scenes.stayBlock[0]) * BIT_OF_BLOCK * BIT - (PIG_HEIGHT);
+    boolean chickenMove = false;
+    int chickenStartWalk = 320;
+    int chickenStartScene = 7;
+    boolean chickenStart = false;
+    double chickenPositionX = -300;
+    double chickenPositionY = (10 - Scenes.stayBlock[7]) * BIT_OF_BLOCK * BIT - (CHICKEN_HEIGHT);
 
-    double sheepPositionX = 350;
-    double sheepPositionY = (10 - Scenes.stayBlock[0]) * BIT_OF_BLOCK * BIT - (SHEEP_HEIGHT);
+    boolean pigMove = false;
+    int pigStartWalk = 500;
+    int pigStartScene = 9;
+    boolean pigStart = false;
+    double pigPositionX = -150;
+    double pigPositionY = (10 - Scenes.stayBlock[9]) * BIT_OF_BLOCK * BIT - (PIG_HEIGHT);
+
+    boolean sheepMove = false;
+    int sheepStartWalk = 400;
+    int sheepStartScene = 5;
+    boolean sheepStart = false;
+    double sheepPositionX = -400;
+    double sheepPositionY = (10 - Scenes.stayBlock[5]) * BIT_OF_BLOCK * BIT - (SHEEP_HEIGHT);
 
     double sunPositionX = 50;
     double sunPositionY = 80;
@@ -77,9 +103,10 @@ public class Assignment_2_64050152_64050177 extends JPanel implements Runnable {
     double sunAngle = 10;
 
     boolean startScene = false;
+    boolean steveMove = false;
 
-    int scene1cureent = 0;
-    int scene2cureent = 1;
+    int scene1current = 0;
+    int scene2current = 1;
 
     int backScene1cureent = 0;
     int backScene2cureent = 1;
@@ -112,10 +139,13 @@ public class Assignment_2_64050152_64050177 extends JPanel implements Runnable {
         drawScene(g2, (int) scene1PositionX, 0, Scenes.scenes[scene1cureent]);
         drawScene(g2, (int) scene2PositionX, 0, Scenes.scenes[scene2cureent]);
         drawCharacter(g2, (int) stevePositionX, (int) stevePositionY);
+        drawBee(g2, (int) beePositionX, (int) beePositionY);
         drawchicken(g2, (int) chickenPositionX, (int) chickenPositionY);
-        drawCow(g2, (int) cowPositionx, (int)cowPositionY);
+        drawCow(g2, (int) cowPositionx, (int) cowPositionY);
         drawPig(g2, (int) pigPositionX, (int) pigPositionY);
         drawSheep(g2, (int) sheepPositionX, (int) sheepPositionY);
+        drawScene(g2, (int) scene1PositionX, 0, Scenes.scenesFront[scene1current]);
+        drawScene(g2, (int) scene2PositionX, 0, Scenes.scenesFront[scene2current]);
     }
 
     @Override
@@ -147,15 +177,82 @@ public class Assignment_2_64050152_64050177 extends JPanel implements Runnable {
             
 
             steveRotateAngle += steveRotateSpeed * elapsedTime / 1000.0;
-            cowRotateAngle += cowRotateSpeed * elapsedTime / 1000.0;
-            pigRotateAngle += pigRotateSpeed * elapsedTime / 1000.0;
-            chickenRotateAngle += chickenRotateSpeed * elapsedTime / 1000.0;
-            sheepRotateAngle += sheepRotateSpeed * elapsedTime / 1000.0;
+            headRotate += headRotateSpeed * elapsedTime / 1000.0;
 
             scene1PositionX += sceneSpeed * elapsedTime / 1000.0;
             scene2PositionX += sceneSpeed * elapsedTime / 1000.0;
 
             stevePositionX -= speed * elapsedTime / 1000.0;
+
+            beePositionX = stevePositionX + (1.5 * BIT_OF_BLOCK * BIT);
+            beeCenterPositionY = stevePositionY - (BIT_OF_BLOCK * BIT);
+            beePositionY += beeUpDownSpeed * elapsedTime / 1000.0;
+
+            if (beePositionY < beeCenterPositionY) {
+                if (beeUpDownSpeed < 0) {
+                    beeUpDownSpeed = -beeUpDownSpeed;
+                }
+            } else if (beePositionY > beeCenterPositionY + (BIT_OF_BLOCK * BIT)) {
+                if (beeUpDownSpeed > 0) {
+                    beeUpDownSpeed = -beeUpDownSpeed;
+                }
+            }
+
+            if ((scene1current == sheepStartScene || scene2current == sheepStartScene) && sheepStart == false) {
+                sheepPositionX += sceneSpeed * elapsedTime / 1000.0;
+            }
+
+            if (sheepPositionX > sheepStartWalk) {
+                sheepPositionX = sheepStartWalk;
+                sheepStart = true;
+            }
+
+            if (sheepStart == true) {
+                sheepRotateAngle += sheepRotateSpeed * elapsedTime / 1000.0;
+                sheepPositionX -= speed * elapsedTime / 1000.0;
+            }
+
+            if ((scene1current == chickenStartScene || scene2current == chickenStartScene) && chickenStart == false) {
+                chickenPositionX += sceneSpeed * elapsedTime / 1000.0;
+            }
+
+            if (chickenPositionX > chickenStartWalk) {
+                chickenPositionX = chickenStartWalk;
+                chickenStart = true;
+            }
+
+            if (chickenStart == true) {
+                chickenRotateAngle += chickenRotateSpeed * elapsedTime / 1000.0;
+                chickenPositionX -= speed * elapsedTime / 1000.0;
+            }
+
+            if ((scene1current == pigStartScene || scene2current == pigStartScene) && pigStart == false) {
+                pigPositionX += sceneSpeed * elapsedTime / 1000.0;
+            }
+
+            if (pigPositionX > pigStartWalk) {
+                pigPositionX = pigStartWalk;
+                pigStart = true;
+            }
+
+            if (pigStart == true) {
+                pigRotateAngle += pigRotateSpeed * elapsedTime / 1000.0;
+                pigPositionX -= speed * elapsedTime / 1000.0;
+            }
+
+            if ((scene1current == cowStartScene || scene2current == cowStartScene) && cowStart == false) {
+                cowPositionx += sceneSpeed * elapsedTime / 1000.0;
+            }
+
+            if (cowPositionx > cowStartWalk) {
+                cowPositionx = cowStartWalk;
+                cowStart = true;
+            }
+
+            if (cowStart == true) {
+                cowRotateAngle += cowRotateSpeed * elapsedTime / 1000.0;
+                cowPositionx -= speed * elapsedTime / 1000.0;
+            }
 
             if (stevePositionX <= screenWidth / 2 && startScene == false) {
                 speed = 0;
@@ -170,6 +267,14 @@ public class Assignment_2_64050152_64050177 extends JPanel implements Runnable {
             } else if (steveRotateAngle <= -STEVE_MAX_RATATION) {
                 steveRotateAngle = -STEVE_MAX_RATATION;
                 steveRotateSpeed = -steveRotateSpeed;
+            }
+
+            if (headRotate >= HEAD_MAX_RATATE) {
+                headRotate = HEAD_MAX_RATATE;
+                headRotateSpeed = -headRotateSpeed;
+            } else if (headRotate <= -HEAD_MAX_RATATE) {
+                headRotate = -HEAD_MAX_RATATE;
+                headRotateSpeed = -headRotateSpeed;
             }
 
             if (cowRotateAngle >= COW_MAX_RATATION) {
@@ -204,60 +309,136 @@ public class Assignment_2_64050152_64050177 extends JPanel implements Runnable {
                 chickenRotateSpeed = -chickenRotateSpeed;
             }
 
-            if (scene1PositionX >= stevePositionX && Scenes.stayBlock[scene1cureent] != -1
-                    && Scenes.stayBlock[scene1cureent + 1] != -1) {
-                if (Scenes.stayBlock[scene1cureent] < Scenes.stayBlock[scene2cureent]) {
-                    jump();
-                } else if (Scenes.stayBlock[scene1cureent] > Scenes.stayBlock[scene2cureent]) {
-                    down();
+            if (scene1PositionX >= sheepPositionX && !sheepMove && sheepStart) {
+                if (Scenes.stayBlock[scene1current] < Scenes.stayBlock[scene2current]) {
+                    sheepPositionY -= BIT_OF_BLOCK * BIT;
+                } else if (Scenes.stayBlock[scene1current] > Scenes.stayBlock[scene2current]) {
+                    sheepPositionY += BIT_OF_BLOCK * BIT;
                 }
-                Scenes.stayBlock[scene1cureent] = -1;
+                sheepMove = true;
             }
 
-            if (scene2PositionX >= stevePositionX && Scenes.stayBlock[scene2cureent] != -1
-                    && Scenes.stayBlock[scene2cureent + 1] != -1) {
-                if (Scenes.stayBlock[scene2cureent] < Scenes.stayBlock[scene1cureent]) {
-                    jump();
-                } else if (Scenes.stayBlock[scene2cureent] > Scenes.stayBlock[scene1cureent]) {
-                    down();
+            if (scene2PositionX >= sheepPositionX && !sheepMove && sheepStart) {
+                if (Scenes.stayBlock[scene2current] < Scenes.stayBlock[scene1current]) {
+                    sheepPositionY -= BIT_OF_BLOCK * BIT;
+                } else if (Scenes.stayBlock[scene2current] > Scenes.stayBlock[scene1current]) {
+                    sheepPositionY += BIT_OF_BLOCK * BIT;
                 }
-                Scenes.stayBlock[scene2cureent] = -1;
+                sheepMove = true;
+            }
+
+            if (scene1PositionX >= chickenPositionX && !chickenMove && chickenStart) {
+                if (Scenes.stayBlock[scene1current] < Scenes.stayBlock[scene2current]) {
+                    chickenPositionY -= BIT_OF_BLOCK * BIT;
+                } else if (Scenes.stayBlock[scene1current] > Scenes.stayBlock[scene2current]) {
+                    chickenPositionY += BIT_OF_BLOCK * BIT;
+                }
+                chickenMove = true;
+            }
+
+            if (scene2PositionX >= chickenPositionX && !chickenMove && chickenStart) {
+                if (Scenes.stayBlock[scene2current] < Scenes.stayBlock[scene1current]) {
+                    chickenPositionY -= BIT_OF_BLOCK * BIT;
+                } else if (Scenes.stayBlock[scene2current] > Scenes.stayBlock[scene1current]) {
+                    chickenPositionY += BIT_OF_BLOCK * BIT;
+                }
+                chickenMove = true;
+            }
+
+            if (scene1PositionX >= pigPositionX && !pigMove && pigStart) {
+                if (Scenes.stayBlock[scene1current] < Scenes.stayBlock[scene2current]) {
+                    pigPositionY -= BIT_OF_BLOCK * BIT;
+                } else if (Scenes.stayBlock[scene1current] > Scenes.stayBlock[scene2current]) {
+                    pigPositionY += BIT_OF_BLOCK * BIT;
+                }
+                pigMove = true;
+            }
+
+            if (scene2PositionX >= pigPositionX && !pigMove && pigStart) {
+                if (Scenes.stayBlock[scene2current] < Scenes.stayBlock[scene1current]) {
+                    pigPositionY -= BIT_OF_BLOCK * BIT;
+                } else if (Scenes.stayBlock[scene2current] > Scenes.stayBlock[scene1current]) {
+                    pigPositionY += BIT_OF_BLOCK * BIT;
+                }
+                pigMove = true;
+            }
+
+            if (scene1PositionX >= cowPositionx && !cowMove && cowStart) {
+                if (Scenes.stayBlock[scene1current] < Scenes.stayBlock[scene2current]) {
+                    cowPositionY -= BIT_OF_BLOCK * BIT;
+                } else if (Scenes.stayBlock[scene1current] > Scenes.stayBlock[scene2current]) {
+                    cowPositionY += BIT_OF_BLOCK * BIT;
+                }
+                cowMove = true;
+            }
+
+            if (scene2PositionX >= cowPositionx && !cowMove && cowStart) {
+                if (Scenes.stayBlock[scene2current] < Scenes.stayBlock[scene1current]) {
+                    cowPositionY -= BIT_OF_BLOCK * BIT;
+                } else if (Scenes.stayBlock[scene2current] > Scenes.stayBlock[scene1current]) {
+                    cowPositionY += BIT_OF_BLOCK * BIT;
+                }
+                cowMove = true;
+            }
+
+            if (scene1PositionX >= stevePositionX - (STEVE_WIDTH / 2.0) && !steveMove) {
+                if (Scenes.stayBlock[scene1current] < Scenes.stayBlock[scene2current]) {
+                    stevePositionY -= BIT_OF_BLOCK * BIT;
+                } else if (Scenes.stayBlock[scene1current] > Scenes.stayBlock[scene2current]) {
+                    stevePositionY += BIT_OF_BLOCK * BIT;
+                }
+                steveMove = true;
+            }
+
+            if (scene2PositionX >= stevePositionX - (STEVE_WIDTH / 2.0) && !steveMove) {
+                if (Scenes.stayBlock[scene2current] < Scenes.stayBlock[scene1current]) {
+                    stevePositionY -= BIT_OF_BLOCK * BIT;
+                } else if (Scenes.stayBlock[scene2current] > Scenes.stayBlock[scene1current]) {
+                    stevePositionY += BIT_OF_BLOCK * BIT;
+                }
+                steveMove = true;
             }
 
             if (scene1PositionX >= 640) {
                 scene1PositionX = -640;
-                scene1cureent += 2;
+                scene1current += 2;
+                sheepMove = sheepStart ? false : true;
+                cowMove = cowStart ? false : true;
+                pigMove = pigStart ? false : true;
+                chickenMove = chickenStart ? false : true;
+                steveMove = false;
             }
 
             if (scene2PositionX >= 640) {
                 scene2PositionX = -640;
-                scene2cureent += 2;
+                scene2current += 2;
+                sheepMove = sheepStart ? false : true;
+                cowMove = cowStart ? false : true;
+                pigMove = pigStart ? false : true;
+                chickenMove = chickenStart ? false : true;
+                steveMove = false;
             }
 
-            if (scene2cureent >= Scenes.scenes.length - 1 || scene1cureent >= Scenes.scenes.length - 1) {
+            if (scene2current >= Scenes.scenes.length - 1 || scene1current >= Scenes.scenes.length - 1) {
                 sceneSpeed = 0;
                 speed = 300;
+            }
+
+            if (stevePositionX < -500) {
+                break;
             }
 
             repaint();
         }
     }
 
-    public void jump() {
-        stevePositionY -= BIT_OF_BLOCK * BIT;
-    }
-
-    public void down() {
-        stevePositionY += BIT_OF_BLOCK * BIT;
-    }
-
     public void drawBlock(Graphics2D g2, int x, int y, String colorCode[][]) {
 
         for (int i = 0, dy = y; i < colorCode.length; i++, dy += BIT) {
             for (int j = 0, dx = x; j < colorCode[0].length; j++, dx += BIT) {
-                if (colorCode[i][j] == "#000000") {
+                if (colorCode[i][j].equals("#000000")) {
                     g2.setColor(new Color(0, 0, 0, 200));
-                } else if (colorCode[i][j] == "#xxxxxx") {
+                } else if (colorCode[i][j].equals("#xxxxxx")) {
                     continue;
                 } else {
                     g2.setColor(Color.decode(colorCode[i][j]));
@@ -265,6 +446,19 @@ public class Assignment_2_64050152_64050177 extends JPanel implements Runnable {
                 g2.fillRect(dx, dy, BIT, BIT);
             }
         }
+    }
+
+    public void drawBee(Graphics2D g2, int x, int y) {
+        double hornPositionX = x;
+        double hornPositionY = y;
+
+        double hornWidth = 4 * BIT;
+        double bodyPositionX = hornPositionX + hornWidth;
+        double bodyPositionY = y;
+
+        drawBlock(g2, (int) hornPositionX, (int) hornPositionY, Mob.beeLeftViewHorn);
+
+        drawBlock(g2, (int) bodyPositionX, (int) bodyPositionY, Mob.beeLeftViewBody);
     }
 
     public void drawSheep(Graphics2D g2, int x, int y) {
@@ -291,7 +485,9 @@ public class Assignment_2_64050152_64050177 extends JPanel implements Runnable {
         double fLegRotatePositionX = fLegPositionX + BIT + (legWidht / 2);
         double bLegRotatePositionX = bLegPositionX + BIT + (legWidht / 2);
 
+        g2.rotate(-Math.toRadians(headRotate), bodyPositionX, bodyPositionY);
         drawBlock(g2, (int) headPositionX, (int) headPositionY, Mob.sheepHead);
+        g2.rotate(Math.toRadians(headRotate), bodyPositionX, bodyPositionY);
 
         // front right leg
         g2.rotate(Math.toRadians(sheepRotateAngle), fLegRotatePositionX, legRotatePositionY);
@@ -343,7 +539,9 @@ public class Assignment_2_64050152_64050177 extends JPanel implements Runnable {
         double fLegRotatePositionX = fLegPositionX + (legWidht / 2);
         double bLegRotatePositionX = bLegPositionX + (legWidht / 2);
 
+        g2.rotate(-Math.toRadians(headRotate), bodyPositionX, bodyPositionY);
         drawBlock(g2, (int) headPositionX, (int) headPositionY, Mob.cowHead);
+        g2.rotate(Math.toRadians(headRotate), bodyPositionX, bodyPositionY);
 
         // front right leg
         g2.rotate(Math.toRadians(cowRotateAngle), fLegRotatePositionX, legRotatePositionY);
@@ -398,9 +596,11 @@ public class Assignment_2_64050152_64050177 extends JPanel implements Runnable {
         double legRotatePositionX = legPositionX + legWidth;
         double legRotatePositionY = legPositionY;
 
+        g2.rotate(-Math.toRadians(headRotate), bodyPositionX, bodyPositionY);
         drawBlock(g2, (int) headPositionX, (int) headPositionY, Mob.chickenHead);
         drawBlock(g2, (int) mouthPositionX, (int) mouthPositionY, Mob.chickenMouth);
         drawBlock(g2, (int) combPositionX, (int) combPositionY, Mob.chickenComb);
+        g2.rotate(Math.toRadians(headRotate), bodyPositionX, bodyPositionY);
 
         // right leg
         g2.rotate(Math.toRadians(chickenRotateAngle), legRotatePositionX, legRotatePositionY);
@@ -444,8 +644,10 @@ public class Assignment_2_64050152_64050177 extends JPanel implements Runnable {
         double bLegRotatePositionX = bLegPositionX + (legWidth / 2);
         double bLegRotatePositionY = bLegPositionY;
 
+        g2.rotate(-Math.toRadians(headRotate), bodyPositionX, bLegPositionY);
         drawBlock(g2, (int) headPositionX, (int) headPositionY, Mob.pigHead);
         drawBlock(g2, (int) nosePositionX, (int) nosePositionY, Mob.pigNose);
+        g2.rotate(Math.toRadians(headRotate), bodyPositionX, bLegPositionY);
 
         // right front leg
         g2.rotate(Math.toRadians(pigRotateAngle), fLegRotatePositionX, fLegRotatePositionY);
@@ -506,7 +708,9 @@ public class Assignment_2_64050152_64050177 extends JPanel implements Runnable {
         drawBlock(g2, (int) bodyPositionX, (int) bodyPositionY, Mob.bodyColorCode);
 
         // head
+        g2.rotate(-Math.toRadians(headRotate), rotatePositionX, armRotatePositionY);
         drawBlock(g2, (int) headPositionX, (int) headPositionY, Mob.headColorCode);
+        g2.rotate(Math.toRadians(headRotate), rotatePositionX, armRotatePositionY);
 
         // left arm
         g2.rotate(-Math.toRadians(steveRotateAngle), rotatePositionX, armPositionY);
@@ -538,7 +742,7 @@ public class Assignment_2_64050152_64050177 extends JPanel implements Runnable {
         }
         BufferedImage bf = new BufferedImage(601, 601, BufferedImage.TYPE_INT_ARGB);
         Graphics2D gDark = bf.createGraphics();
-        gDark.setColor(new Color(0, 0, 0, 64));
+        gDark.setColor(new Color(0, 0, 0, 80));
         for (int i = 0, dy = y; i < blockCodeColors.length; i++, dy += BIT_OF_BLOCK * BIT) {
             for (int j = 0, dx = x; j < blockCodeColors[0].length; j++, dx += BIT_OF_BLOCK * BIT) {
                 if (blockCodeColors[i][j] != null) {
